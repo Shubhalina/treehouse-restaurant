@@ -42,12 +42,17 @@ export default function Navbar() {
         </nav>
 
         {/* Reserve Button */}
-        <a
-          href="#booking"
+        <button
+          onClick={() => {
+            document.getElementById("booking")?.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }}
           className="hidden md:block bg-yellow-500 hover:bg-yellow-600 text-black px-5 py-3 rounded-full font-semibold"
-        >
+           >
           Reserve Now
-        </a>
+        </button>
 
         {/* Mobile Menu Button */}
         <button
@@ -75,13 +80,21 @@ export default function Navbar() {
               </a>
             ))}
 
-            <a
-              href="#booking"
-              onClick={() => setIsOpen(false)}
+           <button
+              onClick={() => {
+                setIsOpen(false);
+
+                setTimeout(() => {
+                  document.getElementById("booking")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }, 100);
+              }}
               className="bg-yellow-500 text-black rounded-xl py-3 text-center font-semibold"
             >
               Reserve Now
-            </a>
+            </button>
 
           </nav>
 

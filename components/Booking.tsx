@@ -56,7 +56,7 @@ export default function Booking() {
   return (
     <section
       id="booking"
-      className="bg-gray-950 text-white py-24 px-6"
+      className="scroll-mt-24 py-24 bg-gray-100"
     >
       <div className="max-w-5xl mx-auto">
         <motion.h2

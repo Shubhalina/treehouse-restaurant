@@ -43,11 +43,21 @@ const packages = [
 ];
 
 export default function EventPackages() {
+  const scrollToBooking = () => {
+    const bookingSection = document.getElementById("booking");
+
+    if (bookingSection) {
+      bookingSection.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-      <section
-        id="events"
-        className="bg-white py-24 px-6"
-      >
+    <section
+      id="events"
+      className="bg-white py-24 px-6"
+    >
       <div className="max-w-7xl mx-auto">
 
         <motion.h2
@@ -64,7 +74,6 @@ export default function EventPackages() {
         </p>
 
         <div className="grid lg:grid-cols-3 gap-8">
-
           {packages.map((item, index) => {
             const Icon = item.icon;
 
@@ -72,13 +81,13 @@ export default function EventPackages() {
               <motion.div
                 key={index}
                 whileHover={{ y: -10 }}
-                className="rounded-3xl shadow-2xl border p-8"
+                className="rounded-3xl shadow-2xl border p-8 bg-white"
               >
                 <div className="w-16 h-16 rounded-full bg-yellow-500 flex items-center justify-center mb-6">
                   <Icon size={32} className="text-black" />
                 </div>
 
-                <h3 className="text-3xl font-bold">
+                <h3 className="text-3xl font-bold text-gray-900">
                   {item.title}
                 </h3>
 
@@ -86,19 +95,27 @@ export default function EventPackages() {
                   {item.price}
                 </p>
 
-                <ul className="space-y-3 text-gray-600">
+                <ul className="space-y-3 text-gray-700">
                   {item.features.map((feature) => (
                     <li key={feature}>✅ {feature}</li>
                   ))}
                 </ul>
 
-                <button className="mt-8 w-full bg-yellow-500 hover:bg-yellow-600 text-black py-3 rounded-full font-semibold transition">
+                <button
+                  onClick={() =>
+                  document.getElementById("booking")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  })
+            }
+                  className="mt-8 w-full bg-yellow-500 hover:bg-yellow-600 text-black py-3 rounded-full font-semibold"
+                >
                   Book Now
                 </button>
+
               </motion.div>
             );
           })}
-
         </div>
 
       </div>
