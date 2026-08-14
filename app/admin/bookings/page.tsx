@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { prisma } from "@/lib/prisma";
 
 export default async function BookingsPage() {
@@ -9,7 +11,7 @@ export default async function BookingsPage() {
 
   return (
     <main className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-4xl font-bold mb-8">
+      <h1 className="text-4xl font-bold mb-8 text-gray-900">
         Booking Management
       </h1>
 
@@ -45,29 +47,37 @@ export default async function BookingsPage() {
                   key={booking.id}
                   className="border-b hover:bg-gray-50"
                 >
-                  <td className="px-6 py-4">{booking.name}</td>
+                  <td className="px-6 py-4 text-gray-900">
+                    {booking.name}
+                  </td>
 
-                  <td className="px-6 py-4">{booking.phone}</td>
+                  <td className="px-6 py-4 text-gray-900">
+                    {booking.phone}
+                  </td>
 
-                  <td className="px-6 py-4">{booking.email}</td>
+                  <td className="px-6 py-4 text-gray-900">
+                    {booking.email}
+                  </td>
 
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 text-gray-900">
                     {booking.bookingType}
                   </td>
 
-                  <td className="px-6 py-4">
-                    {new Date(booking.date).toLocaleDateString()}
+                  <td className="px-6 py-4 text-gray-900">
+                    {new Date(
+                      booking.date
+                    ).toLocaleDateString()}
                   </td>
 
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 text-gray-900">
                     {booking.time}
                   </td>
 
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 text-gray-900">
                     {booking.guests}
                   </td>
 
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 text-gray-900">
                     {booking.budget || "-"}
                   </td>
 

@@ -1,15 +1,22 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 export default function PackageBookingPage() {
-  const searchParams = useSearchParams();
-
-  const packageName =
-    searchParams.get("package") || "Event Package";
-
+  const [packageName, setPackageName] = useState("Event Package");
   const [loading, setLoading] = useState(false);
+
+  // Get package name from URL
+  // Example:
+  // /booking/package?package=Birthday%20Celebration
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const packageParam = params.get("package");
+
+    if (packageParam) {
+      setPackageName(packageParam);
+    }
+  }, []);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -43,14 +50,22 @@ export default function PackageBookingPage() {
       const result = await response.json();
 
       if (result.success) {
-        alert("Your booking request has been submitted successfully!");
+        alert(
+          "Your booking request has been submitted successfully!"
+        );
+
         form.reset();
       } else {
-        alert("Booking failed. Please try again.");
+        alert(
+          result.message || "Booking failed. Please try again."
+        );
       }
     } catch (error) {
-      console.error(error);
-      alert("Something went wrong. Please try again.");
+      console.error("Booking error:", error);
+
+      alert(
+        "Something went wrong. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -60,25 +75,31 @@ export default function PackageBookingPage() {
     <main className="min-h-screen bg-gray-100 py-20 px-6">
       <div className="max-w-3xl mx-auto">
 
+        {/* Booking Card */}
         <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
 
+          {/* Title */}
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 text-center">
             Book Your Package
           </h1>
 
+          {/* Selected Package */}
           <p className="text-center text-yellow-600 font-semibold text-xl mt-4">
             {packageName}
           </p>
 
           <p className="text-center text-gray-600 mt-3 mb-10">
-            Fill in your details and we will contact you to confirm your booking.
+            Fill in your details and we will contact you to confirm your
+            booking.
           </p>
 
+          {/* Form */}
           <form
             onSubmit={handleSubmit}
             className="grid md:grid-cols-2 gap-5"
           >
 
+            {/* Name */}
             <input
               name="name"
               type="text"
@@ -87,6 +108,7 @@ export default function PackageBookingPage() {
               className="w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
+            {/* Phone */}
             <input
               name="phone"
               type="tel"
@@ -95,6 +117,7 @@ export default function PackageBookingPage() {
               className="w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
+            {/* Email */}
             <input
               name="email"
               type="email"
@@ -103,6 +126,7 @@ export default function PackageBookingPage() {
               className="w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
+            {/* Date */}
             <input
               name="date"
               type="date"
@@ -110,6 +134,7 @@ export default function PackageBookingPage() {
               className="w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
+            {/* Time */}
             <input
               name="time"
               type="time"
@@ -117,6 +142,7 @@ export default function PackageBookingPage() {
               className="w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
+            {/* Guests */}
             <input
               name="guests"
               type="number"
@@ -126,6 +152,7 @@ export default function PackageBookingPage() {
               className="w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
+            {/* Budget */}
             <input
               name="budget"
               type="text"
@@ -133,6 +160,7 @@ export default function PackageBookingPage() {
               className="md:col-span-2 w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
+            {/* Message */}
             <textarea
               name="message"
               rows={5}
@@ -140,6 +168,7 @@ export default function PackageBookingPage() {
               className="md:col-span-2 w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
+            {/* Submit */}
             <button
               type="submit"
               disabled={loading}
@@ -149,9 +178,7 @@ export default function PackageBookingPage() {
             </button>
 
           </form>
-
         </div>
-
       </div>
     </main>
   );
