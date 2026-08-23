@@ -2,13 +2,12 @@
 
 import { FormEvent, useEffect, useState } from "react";
 
+const WHATSAPP_NUMBER = "918876951989";
+
 export default function PackageBookingPage() {
   const [packageName, setPackageName] = useState("Event Package");
   const [loading, setLoading] = useState(false);
 
-  // Get package name from URL
-  // Example:
-  // /booking/package?package=Birthday%20Celebration
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const packageParam = params.get("package");
@@ -18,7 +17,7 @@ export default function PackageBookingPage() {
     }
   }, []);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setLoading(true);
@@ -26,158 +25,142 @@ export default function PackageBookingPage() {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    const data = {
-      name: formData.get("name"),
-      phone: formData.get("phone"),
-      email: formData.get("email"),
-      bookingType: packageName,
-      date: formData.get("date"),
-      time: formData.get("time"),
-      guests: formData.get("guests"),
-      budget: formData.get("budget"),
-      message: formData.get("message"),
-    };
+    const name = String(formData.get("name") || "");
+    const phone = String(formData.get("phone") || "");
+    const email = String(formData.get("email") || "");
+    const date = String(formData.get("date") || "");
+    const time = String(formData.get("time") || "");
+    const guests = String(formData.get("guests") || "");
+    const budget = String(formData.get("budget") || "");
+    const message = String(formData.get("message") || "");
 
-    try {
-      const response = await fetch("/api/bookings", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    const whatsappMessage = `
+🌳 TREE HOUSE RESTAURANT
 
-      const result = await response.json();
+🎁 NEW PACKAGE BOOKING REQUEST
 
-      if (result.success) {
-        alert(
-          "Your booking request has been submitted successfully!"
-        );
+📦 Package: ${packageName}
 
-        form.reset();
-      } else {
-        alert(
-          result.message || "Booking failed. Please try again."
-        );
-      }
-    } catch (error) {
-      console.error("Booking error:", error);
+👤 Name: ${name}
+📞 Phone: ${phone}
+📧 Email: ${email}
 
-      alert(
-        "Something went wrong. Please try again."
-      );
-    } finally {
-      setLoading(false);
-    }
+📅 Date: ${date}
+⏰ Time: ${time}
+👥 Guests: ${guests}
+💰 Budget: ${budget || "Not specified"}
+
+📝 Special Request:
+${message || "None"}
+
+Please contact me to confirm this package booking.
+`;
+
+    const whatsappUrl =
+      `https://wa.me/${WHATSAPP_NUMBER}?text=` +
+      encodeURIComponent(whatsappMessage);
+
+    window.open(whatsappUrl, "_blank");
+
+    form.reset();
+    setLoading(false);
   };
 
   return (
-    <main className="min-h-screen bg-gray-100 py-20 px-6">
+    <main className="min-h-screen bg-gray-100 py-24 px-6">
       <div className="max-w-3xl mx-auto">
-
-        {/* Booking Card */}
         <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12">
 
-          {/* Title */}
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 text-center">
             Book Your Package
           </h1>
 
-          {/* Selected Package */}
-          <p className="text-center text-yellow-600 font-semibold text-xl mt-4">
+          <p className="text-center text-yellow-600 font-bold text-xl mt-4">
             {packageName}
           </p>
 
           <p className="text-center text-gray-600 mt-3 mb-10">
-            Fill in your details and we will contact you to confirm your
-            booking.
+            Fill in your details and contact us through WhatsApp.
           </p>
 
-          {/* Form */}
           <form
             onSubmit={handleSubmit}
             className="grid md:grid-cols-2 gap-5"
           >
 
-            {/* Name */}
             <input
               name="name"
               type="text"
               placeholder="Full Name"
               required
-              className="w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
+              className="border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
-            {/* Phone */}
             <input
               name="phone"
               type="tel"
               placeholder="Phone Number"
               required
-              className="w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
+              className="border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
-            {/* Email */}
             <input
               name="email"
               type="email"
               placeholder="Email Address"
               required
-              className="w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
+              className="border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
-            {/* Date */}
             <input
               name="date"
               type="date"
               required
-              className="w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
+              className="border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
-            {/* Time */}
             <input
               name="time"
               type="time"
               required
-              className="w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
+              className="border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
-            {/* Guests */}
             <input
               name="guests"
               type="number"
               min="1"
               placeholder="Number of Guests"
               required
-              className="w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
+              className="border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
-            {/* Budget */}
             <input
               name="budget"
               type="text"
               placeholder="Estimated Budget"
-              className="md:col-span-2 w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
+              className="md:col-span-2 border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
-            {/* Message */}
             <textarea
               name="message"
               rows={5}
               placeholder="Special Requests..."
-              className="md:col-span-2 w-full border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
+              className="md:col-span-2 border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
-            {/* Submit */}
             <button
               type="submit"
               disabled={loading}
               className="md:col-span-2 bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 rounded-xl transition disabled:opacity-50"
             >
-              {loading ? "Submitting..." : "Confirm Booking"}
+              {loading
+                ? "Opening WhatsApp..."
+                : "Book Package on WhatsApp"}
             </button>
 
           </form>
+
         </div>
       </div>
     </main>

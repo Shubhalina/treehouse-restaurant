@@ -2,10 +2,12 @@
 
 import { FormEvent, useState } from "react";
 
+const WHATSAPP_NUMBER = "918876951989";
+
 export default function TableBookingPage() {
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setLoading(true);
@@ -13,41 +15,44 @@ export default function TableBookingPage() {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    const data = {
-      name: formData.get("name"),
-      phone: formData.get("phone"),
-      email: formData.get("email"),
-      bookingType: "Restaurant Table",
-      date: formData.get("date"),
-      time: formData.get("time"),
-      guests: formData.get("guests"),
-      budget: formData.get("budget"),
-      message: formData.get("message"),
-    };
+    const name = String(formData.get("name") || "");
+    const phone = String(formData.get("phone") || "");
+    const email = String(formData.get("email") || "");
+    const date = String(formData.get("date") || "");
+    const time = String(formData.get("time") || "");
+    const guests = String(formData.get("guests") || "");
+    const budget = String(formData.get("budget") || "");
+    const message = String(formData.get("message") || "");
 
-    try {
-      const response = await fetch("/api/bookings", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    const whatsappMessage = `
+🌳 TREE HOUSE RESTAURANT
 
-      const result = await response.json();
+📋 NEW TABLE RESERVATION
 
-      if (result.success) {
-        alert("Your table reservation has been submitted successfully!");
-        form.reset();
-      } else {
-        alert("Reservation failed. Please try again.");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+👤 Name: ${name}
+📞 Phone: ${phone}
+📧 Email: ${email}
+
+🍽️ Booking Type: Restaurant Table
+📅 Date: ${date}
+⏰ Time: ${time}
+👥 Guests: ${guests}
+💰 Budget: ${budget || "Not specified"}
+
+📝 Special Request:
+${message || "None"}
+
+Please confirm this table reservation.
+`;
+
+    const whatsappUrl =
+      `https://wa.me/${WHATSAPP_NUMBER}?text=` +
+      encodeURIComponent(whatsappMessage);
+
+    window.open(whatsappUrl, "_blank");
+
+    form.reset();
+    setLoading(false);
   };
 
   return (
@@ -67,6 +72,7 @@ export default function TableBookingPage() {
             onSubmit={handleSubmit}
             className="grid md:grid-cols-2 gap-5"
           >
+
             <input
               name="name"
               type="text"
@@ -133,8 +139,11 @@ export default function TableBookingPage() {
               disabled={loading}
               className="md:col-span-2 bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 rounded-xl transition disabled:opacity-50"
             >
-              {loading ? "Reserving..." : "Reserve Table"}
+              {loading
+                ? "Opening WhatsApp..."
+                : "Reserve Table on WhatsApp"}
             </button>
+
           </form>
 
         </div>

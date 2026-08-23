@@ -2,10 +2,12 @@
 
 import { FormEvent, useState } from "react";
 
+const WHATSAPP_NUMBER = "918876951989";
+
 export default function EventBookingPage() {
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     setLoading(true);
@@ -13,41 +15,45 @@ export default function EventBookingPage() {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    const data = {
-      name: formData.get("name"),
-      phone: formData.get("phone"),
-      email: formData.get("email"),
-      bookingType: formData.get("bookingType"),
-      date: formData.get("date"),
-      time: formData.get("time"),
-      guests: formData.get("guests"),
-      budget: formData.get("budget"),
-      message: formData.get("message"),
-    };
+    const name = String(formData.get("name") || "");
+    const phone = String(formData.get("phone") || "");
+    const email = String(formData.get("email") || "");
+    const eventType = String(formData.get("eventType") || "");
+    const date = String(formData.get("date") || "");
+    const time = String(formData.get("time") || "");
+    const guests = String(formData.get("guests") || "");
+    const budget = String(formData.get("budget") || "");
+    const message = String(formData.get("message") || "");
 
-    try {
-      const response = await fetch("/api/bookings", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    const whatsappMessage = `
+🌳 TREE HOUSE RESTAURANT
 
-      const result = await response.json();
+🎉 NEW EVENT BOOKING REQUEST
 
-      if (result.success) {
-        alert("Your event booking request has been submitted successfully!");
-        form.reset();
-      } else {
-        alert("Event booking failed. Please try again.");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+👤 Name: ${name}
+📞 Phone: ${phone}
+📧 Email: ${email}
+
+🎊 Event Type: ${eventType}
+📅 Date: ${date}
+⏰ Time: ${time}
+👥 Guests: ${guests}
+💰 Budget: ${budget || "Not specified"}
+
+📝 Special Request:
+${message || "None"}
+
+Please contact me to confirm the event booking.
+`;
+
+    const whatsappUrl =
+      `https://wa.me/${WHATSAPP_NUMBER}?text=` +
+      encodeURIComponent(whatsappMessage);
+
+    window.open(whatsappUrl, "_blank");
+
+    form.reset();
+    setLoading(false);
   };
 
   return (
@@ -60,13 +66,14 @@ export default function EventBookingPage() {
           </h1>
 
           <p className="text-center text-gray-600 mt-4 mb-10">
-            Plan your birthday, wedding, private dining or special event with us.
+            Tell us about your event and contact us through WhatsApp.
           </p>
 
           <form
             onSubmit={handleSubmit}
             className="grid md:grid-cols-2 gap-5"
           >
+
             <input
               name="name"
               type="text"
@@ -92,37 +99,25 @@ export default function EventBookingPage() {
             />
 
             <select
-              name="bookingType"
+              name="eventType"
               required
-              defaultValue=""
               className="border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             >
-              <option value="" disabled>
-                Select Event Type
+              <option value="">Select Event Type</option>
+              <option value="Birthday Celebration">
+                Birthday Celebration
               </option>
-
-              <option value="Birthday Party">
-                Birthday Party
-              </option>
-
               <option value="Wedding Reception">
                 Wedding Reception
               </option>
-
-              <option value="Private Dining Cottage">
-                Private Dining Cottage
-              </option>
-
               <option value="Corporate Event">
                 Corporate Event
               </option>
-
-              <option value="Family Gathering">
-                Family Gathering
+              <option value="Private Party">
+                Private Party
               </option>
-
-              <option value="Other Event">
-                Other Event
+              <option value="Other">
+                Other
               </option>
             </select>
 
@@ -159,7 +154,7 @@ export default function EventBookingPage() {
             <textarea
               name="message"
               rows={5}
-              placeholder="Tell us about your event and special requirements..."
+              placeholder="Tell us about your event..."
               className="md:col-span-2 border border-gray-300 rounded-xl p-4 text-gray-900 bg-white outline-none focus:border-yellow-500"
             />
 
@@ -168,8 +163,11 @@ export default function EventBookingPage() {
               disabled={loading}
               className="md:col-span-2 bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 rounded-xl transition disabled:opacity-50"
             >
-              {loading ? "Submitting..." : "Book Event"}
+              {loading
+                ? "Opening WhatsApp..."
+                : "Book Event on WhatsApp"}
             </button>
+
           </form>
 
         </div>
