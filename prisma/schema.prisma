@@ -31,3 +31,10 @@ model Menu {
   available   Boolean  @default(true)
   createdAt   DateTime @default(now())
 }
+model Review {
+  id        String   @id @default(cuid())
+  name      String
+  review    String
+  rating    Int
+  createdAt DateTime @default(now())
+}

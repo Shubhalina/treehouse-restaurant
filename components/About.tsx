@@ -1,10 +1,17 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { CheckCircle } from "lucide-react";
 
 export default function About() {
+  const features = [
+    "Fresh & Delicious Food",
+    "Wedding Reception Venue",
+    "Birthday Party Celebration",
+    "Private Dining Cottages",
+    "Family Friendly Environment",
+  ];
+
   return (
     <section
       id="about"
@@ -12,35 +19,38 @@ export default function About() {
     >
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
 
-        {/* Left Image */}
+        {/* IMAGE */}
         <motion.div
-          initial={{ opacity: 0, x: -60 }}
+          initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
         >
-          <Image
+          <img
             src="/images/about.jpg"
-            alt="Tree House Restaurant"
-            width={700}
-            height={600}
-            className="rounded-3xl object-cover shadow-2xl"
+            alt="TREE HOUSE Restaurant"
+            className="w-full h-[430px] object-cover rounded-3xl shadow-2xl"
           />
         </motion.div>
 
-        {/* Right Content */}
+        {/* CONTENT */}
         <motion.div
-          initial={{ opacity: 0, x: 60 }}
+          initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
         >
-          <span className="text-yellow-600 font-semibold uppercase tracking-widest">
+          {/* Small Heading */}
+          <p className="text-yellow-600 font-bold tracking-[0.2em] uppercase mb-4">
             About Us
-          </span>
+          </p>
 
-          <h2 className="text-5xl font-bold mt-4 mb-6">
+          {/* MAIN HEADING */}
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
             Welcome to TREE HOUSE
           </h2>
 
+          {/* DESCRIPTION */}
           <p className="text-gray-600 text-lg leading-8 mb-8">
             TREE HOUSE is more than just a restaurant. We offer delicious food,
             a peaceful atmosphere, private dining cottages, birthday
@@ -49,39 +59,32 @@ export default function About() {
             memorable.
           </p>
 
-          <div className="space-y-4">
+          {/* FEATURES */}
+          <div className="space-y-5 mb-10">
+            {features.map((feature) => (
+              <div
+                key={feature}
+                className="flex items-center gap-3"
+              >
+                <CheckCircle
+                  size={25}
+                  className="text-green-500 flex-shrink-0"
+                />
 
-            <div className="flex items-center gap-3">
-              <CheckCircle className="text-green-600" />
-              <p>Fresh & Delicious Food</p>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <CheckCircle className="text-green-600" />
-              <p>Wedding Reception Venue</p>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <CheckCircle className="text-green-600" />
-              <p>Birthday Party Celebration</p>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <CheckCircle className="text-green-600" />
-              <p>Private Dining Cottages</p>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <CheckCircle className="text-green-600" />
-              <p>Family Friendly Environment</p>
-            </div>
-
+                <span className="text-gray-600 text-lg font-medium">
+                  {feature}
+                </span>
+              </div>
+            ))}
           </div>
 
-          <button className="mt-10 bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-4 rounded-full font-semibold transition">
+          {/* BUTTON */}
+          <a
+            href="#contact"
+            className="inline-block bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-4 rounded-full font-semibold transition"
+          >
             Learn More
-          </button>
-
+          </a>
         </motion.div>
 
       </div>

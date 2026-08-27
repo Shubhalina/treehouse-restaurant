@@ -6,7 +6,6 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import Gallery from "@/components/Gallery";
 import Menu from "@/components/Menu";
 import EventPackages from "@/components/EventPackages";
-import Booking from "@/components/Booking";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -23,7 +22,6 @@ export default function Home() {
       <Gallery />
       <Menu />
       <EventPackages />
-      <Booking />
       <Testimonials />
       <Contact />
       <Footer />

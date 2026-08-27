@@ -86,12 +86,14 @@ export default function Contact() {
                   Email
                 </h3>
 
-                <p className="text-gray-500 mt-1">
-                  Email address not listed
-                </p>
+                <a
+                  href="mailto:resorttreehouse4@gmail.com"
+                  className="text-gray-400 hover:text-yellow-400 transition"
+                >
+                  resorttreehouse4@gmail.com
+                </a>
               </div>
             </div>
-
             {/* Opening Hours */}
             <div className="flex gap-5">
               <Clock
