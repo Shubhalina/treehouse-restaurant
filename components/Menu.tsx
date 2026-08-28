@@ -9,28 +9,44 @@ import Navbar from "@/components/Navbar";
 
 const featuredItems = [
   {
-    name: "Biryani",
+    name: "Chicken Biryani",
     image: "/images/food1.jpg",
   },
   {
-    name: "Tandoori",
-    image: "/images/food2.jpg",
-  },
-  {
-    name: "Sizzler",
-    image: "/images/food3.jpg",
-  },
-  {
     name: "Chole Bhature",
-    image: "/images/food4.jpg",
+    image: "/images/food11.jpg",
   },
   {
-    name: "Seafood",
+    name: "Tandoori Chicken",
     image: "/images/food5.jpg",
   },
   {
-    name: "Beverages",
+    name: "Hakka Noodles",
+    image: "/images/food4.jpg",
+  },
+  {
+    name: "Crispy Prawns",
+    image: "/images/food8.jpg",
+  },
+  {
+    name: "Grilled Octopus",
+    image: "/images/food9.jpg",
+  },
+  {
+    name: "Sizzler",
+    image: "/images/food7.jpg",
+  },
+  {
+    name: "Crispy BabyCorn",
+    image: "/images/food16.jpg",
+  },
+  {
+    name: "Fresh Lime Soda",
     image: "/images/food6.jpg",
+  },
+  {
+    name: "Cold Coffee",
+    image: "/images/food12.jpg",
   },
 ];
 
@@ -51,95 +67,12 @@ export default function Menu() {
 
       <section
         id="menu"
-        className="bg-[#17352A] py-14 md:py-20 px-5 md:px-6 scroll-mt-20"
+        className="bg-[#17352A] px-4 py-10 md:px-6 md:py-16 scroll-mt-20"
       >
-        <div className="max-w-7xl mx-auto">
+        <div className="mx-auto max-w-7xl">
 
+          {/* ================================================= */}
           {/* HEADING */}
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto mb-9 md:mb-12"
-          >
-            <p className="text-[#E2BD62] uppercase tracking-[0.22em] text-xs md:text-sm font-semibold mb-3">
-              From Our Kitchen
-            </p>
-
-            <h2 className="text-3xl md:text-5xl font-bold text-white">
-              Our Specialities
-            </h2>
-
-            <div className="w-12 h-[2px] bg-[#C79A32] mx-auto mt-4 mb-4" />
-
-            <p className="text-[#C5CEC8] text-sm md:text-base leading-6">
-              A glimpse of some of the favourites served at TREE HOUSE.
-            </p>
-          </motion.div>
-
-          {/* ================================================= */}
-          {/* SIX SMALL FOOD IMAGES */}
-          {/* ================================================= */}
-
-          <div
-            className="
-              flex
-              gap-3
-              md:gap-4
-              overflow-x-auto
-              md:overflow-visible
-              md:justify-center
-              pb-3
-              max-w-6xl
-              mx-auto
-              scrollbar-hide
-            "
-          >
-            {featuredItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.4,
-                  delay: index * 0.06,
-                }}
-                className="
-                  shrink-0
-                  w-[125px]
-                  sm:w-[140px]
-                  md:w-[150px]
-                  lg:w-[165px]
-                "
-              >
-                <div className="relative w-full aspect-square overflow-hidden rounded-xl bg-[#204437] shadow-md">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    sizes="165px"
-                    className="object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-
-                <p className="text-white text-xs md:text-sm font-semibold text-center mt-2">
-                  {item.name}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* MOBILE HINT */}
-
-          <p className="text-center text-[#8FA198] text-xs mt-1 md:hidden">
-            Swipe to see more
-          </p>
-
-          {/* ================================================= */}
-          {/* VIEW FULL MENU BUTTON */}
           {/* ================================================= */}
 
           <motion.div
@@ -147,7 +80,122 @@ export default function Menu() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="flex justify-center mt-7 md:mt-9"
+            className="mb-7 text-center md:mb-10"
+          >
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#E2BD62] md:mb-3">
+              From Our Kitchen
+            </p>
+
+            <h2 className="text-3xl font-bold text-white md:text-5xl">
+              Our Specialities
+            </h2>
+
+            <div className="mx-auto mt-3 h-[2px] w-12 bg-[#C79A32] md:mt-4 md:w-14" />
+
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#C5CEC8] md:mt-4 md:text-base">
+              A glimpse of some of the favourites served at TREE HOUSE.
+            </p>
+          </motion.div>
+
+          {/* ================================================= */}
+          {/* HORIZONTAL FOOD SWIPE */}
+          {/* ================================================= */}
+
+          <div
+            className="
+              flex
+              gap-3
+              overflow-x-auto
+              pb-3
+              scrollbar-hide
+              snap-x
+              snap-mandatory
+              md:gap-4
+            "
+          >
+            {featuredItems.map((item, index) => (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.4,
+                  delay: Math.min(index * 0.04, 0.3),
+                }}
+                className="
+                  group
+                  shrink-0
+                  snap-start
+                  w-[135px]
+                  sm:w-[155px]
+                  md:w-[190px]
+                  lg:w-[210px]
+                "
+              >
+                {/* IMAGE */}
+
+                <div
+                  className="
+                    relative
+                    h-[105px]
+                    sm:h-[120px]
+                    md:h-[145px]
+                    lg:h-[160px]
+                    w-full
+                    overflow-hidden
+                    rounded-xl
+                    bg-[#204437]
+                    shadow-md
+                  "
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    sizes="
+                      (max-width: 640px) 135px,
+                      (max-width: 768px) 155px,
+                      (max-width: 1024px) 190px,
+                      210px
+                    "
+                    loading={index === 0 ? "eager" : "lazy"}
+                    className="
+                      object-cover
+                      transition-transform
+                      duration-500
+                      group-hover:scale-105
+                    "
+                  />
+                </div>
+
+                {/* NAME */}
+
+                <p className="mt-2 text-center text-xs font-semibold text-white md:text-sm">
+                  {item.name}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* ================================================= */}
+          {/* SWIPE HINT */}
+          {/* ================================================= */}
+
+          <p className="mt-2 text-center text-xs text-[#8FA198]">
+            Swipe to explore →
+          </p>
+
+          {/* ================================================= */}
+          {/* VIEW FULL MENU */}
+          {/* ================================================= */}
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mt-6 flex justify-center md:mt-8"
           >
             <button
               type="button"
@@ -159,25 +207,24 @@ export default function Menu() {
                 gap-2
                 rounded-full
                 bg-[#C79A32]
-                hover:bg-[#E2BD62]
-                text-[#17352A]
-                px-6
-                py-3
-                md:px-8
-                md:py-3.5
+                px-5
+                py-2.5
                 text-sm
-                md:text-base
                 font-semibold
+                text-[#17352A]
+                shadow-md
                 transition-all
                 duration-300
-                shadow-md
+                hover:bg-[#E2BD62]
                 hover:shadow-lg
+                md:px-7
+                md:py-3
               "
             >
               View Full Restaurant Menu
 
               <ArrowRight
-                size={17}
+                size={16}
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
             </button>
@@ -191,7 +238,7 @@ export default function Menu() {
       {/* ================================================= */}
 
       {showRestaurantMenu && (
-        <div className="fixed inset-0 z-[100] bg-[#17352A] overflow-y-auto">
+        <div className="fixed inset-0 z-[100] overflow-y-auto bg-[#17352A]">
 
           {/* ================================================= */}
           {/* NAVBAR */}
@@ -202,7 +249,7 @@ export default function Menu() {
           </div>
 
           {/* ================================================= */}
-          {/* CLOSE / HOME BUTTON */}
+          {/* CLOSE / HOME */}
           {/* ================================================= */}
 
           <button
@@ -211,58 +258,62 @@ export default function Menu() {
             aria-label="Back to Home"
             className="
               fixed
-              top-[90px]
               right-4
-              md:top-[105px]
-              md:right-8
+              top-[90px]
               z-[130]
-              w-10
-              h-10
-              md:w-11
-              md:h-11
-              rounded-full
-              bg-[#C79A32]
-              hover:bg-[#E2BD62]
-              text-[#17352A]
               flex
+              h-10
+              w-10
               items-center
               justify-center
+              rounded-full
+              bg-[#C79A32]
+              text-[#17352A]
               shadow-lg
               transition-all
               duration-200
               hover:scale-105
+              hover:bg-[#E2BD62]
+              md:right-8
+              md:top-[105px]
+              md:h-11
+              md:w-11
             "
           >
             <X size={22} strokeWidth={2.5} />
           </button>
 
           {/* ================================================= */}
-          {/* MENU PAGE */}
+          {/* FULL MENU PAGE */}
           {/* ================================================= */}
 
-          <main className="bg-[#17352A] min-h-screen px-3 md:px-8 py-6 md:py-10">
+          <main className="min-h-screen bg-[#17352A] px-3 py-6 md:px-8 md:py-10">
 
-            <div className="max-w-6xl mx-auto">
+            {/* SMALLER MENU WIDTH */}
 
-              {/* PAGE HEADING */}
+            <div className="mx-auto w-full max-w-[750px]">
+
+              {/* ================================================= */}
+              {/* HEADING */}
+              {/* ================================================= */}
 
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className="text-center mb-6 md:mb-8"
+                className="mb-6 text-center md:mb-8"
               >
-                <p className="text-[#E2BD62] uppercase tracking-[0.25em] text-xs md:text-sm font-semibold">
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#E2BD62] md:text-sm">
                   TREE HOUSE
                 </p>
 
-                <h1 className="text-white text-2xl md:text-4xl font-bold mt-2">
+                <h1 className="mt-2 text-2xl font-bold text-white md:text-4xl">
                   Restaurant Menu
                 </h1>
 
-                <div className="w-12 h-[2px] bg-[#C79A32] mx-auto mt-3" />
+                <div className="mx-auto mt-3 h-[2px] w-12 bg-[#C79A32]" />
 
-                <p className="text-[#C5CEC8] text-sm md:text-base mt-3">
+                <p className="mt-3 text-sm text-[#C5CEC8] md:text-base">
                   Explore our complete menu.
                 </p>
               </motion.div>
@@ -276,13 +327,13 @@ export default function Menu() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
                 className="
-                  bg-[#F7F4ED]
-                  rounded-xl
-                  md:rounded-2xl
-                  p-2
-                  md:p-4
-                  shadow-2xl
                   overflow-hidden
+                  rounded-xl
+                  bg-[#F7F4ED]
+                  p-2
+                  shadow-2xl
+                  md:rounded-2xl
+                  md:p-4
                 "
               >
                 <Image
@@ -291,11 +342,11 @@ export default function Menu() {
                   width={1536}
                   height={1024}
                   className="
-                    w-full
+                    block
                     h-auto
+                    w-full
                     rounded-lg
                     md:rounded-xl
-                    block
                   "
                   priority
                 />

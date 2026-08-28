@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { Star, ArrowRight } from "lucide-react";
 
 type Review = {
   id: string;
@@ -16,28 +16,51 @@ export default function Testimonials() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [name, setName] = useState("");
   const [rating, setRating] = useState(5);
-  const [review, setReview] = useState("");
+  const [comment, setComment] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState("");
+  const [showForm, setShowForm] = useState(false);
+
+  /* ================================================= */
+  /* LOAD REVIEWS */
+  /* ================================================= */
 
   useEffect(() => {
-    fetch("/api/reviews")
-      .then((res) => res.json())
-      .then((data) => {
+    const loadReviews = async () => {
+      try {
+        const response = await fetch("/api/reviews");
+
+        if (!response.ok) {
+          throw new Error("Failed to load reviews");
+        }
+
+        const data = await response.json();
+
         if (Array.isArray(data)) {
           setReviews(data);
         }
-      })
-      .catch(() => {
+      } catch {
         setReviews([]);
-      });
+      }
+    };
+
+    loadReviews();
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  /* ================================================= */
+  /* SUBMIT FEEDBACK */
+  /* ================================================= */
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!name.trim() || !review.trim()) {
-      setMessage("Please enter your name and feedback.");
+    if (!name.trim()) {
+      setMessage("Please enter your name.");
+      return;
+    }
+
+    if (!comment.trim()) {
+      setMessage("Please enter your feedback.");
       return;
     }
 
@@ -53,24 +76,29 @@ export default function Testimonials() {
         body: JSON.stringify({
           name: name.trim(),
           rating,
-          review: review.trim(),
+          review: comment.trim(),
         }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data?.error || "Failed to submit feedback");
+        throw new Error("Failed to submit feedback");
       }
 
-      setReviews((prev) => [data, ...prev]);
+      const newReview = await response.json();
+
+      setReviews((prev) => [newReview, ...prev]);
 
       setName("");
       setRating(5);
-      setReview("");
+      setComment("");
+
       setMessage("Thank you for your feedback!");
-    } catch (error) {
-      console.error(error);
+
+      setTimeout(() => {
+        setShowForm(false);
+        setMessage("");
+      }, 1200);
+    } catch {
       setMessage("Something went wrong. Please try again.");
     } finally {
       setSubmitting(false);
@@ -80,57 +108,256 @@ export default function Testimonials() {
   return (
     <section
       id="feedback"
-      className="bg-[#F7F4ED] px-5 py-16 md:px-6 md:py-20"
+      className="bg-[#F7F4ED] px-4 py-10 md:px-6 md:py-14"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
 
+        {/* ================================================= */}
         {/* HEADING */}
+        {/* ================================================= */}
+
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-10 text-center"
+          transition={{ duration: 0.5 }}
+          className="mx-auto mb-7 max-w-3xl text-center md:mb-10"
         >
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-[#B18424]">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-[#C79A32] md:text-sm">
             Guest Feedback
           </p>
 
-          <h2 className="text-3xl font-bold text-[#1E2823] md:text-4xl">
-            What Did You Think?
+          <h2 className="text-3xl font-bold text-[#17352A] md:text-5xl">
+            What Our Guests Say
           </h2>
 
-          <div className="mx-auto mt-4 mb-4 h-[2px] w-12 bg-[#C79A32]" />
+          <div className="mx-auto mt-3 h-[2px] w-12 bg-[#C79A32]" />
 
-          <p className="mx-auto max-w-xl text-sm leading-6 text-[#66706A] md:text-base">
-            We&apos;d love to hear about your experience at TREE HOUSE.
+          <p className="mt-3 text-sm leading-6 text-[#68736D] md:text-base">
+            A few words from guests who visited TREE HOUSE.
           </p>
         </motion.div>
 
-        {/* FEEDBACK + RECENT FEEDBACK */}
-        <div className="grid gap-8 lg:grid-cols-2">
+        {/* ================================================= */}
+        {/* TESTIMONIAL CARDS */}
+        {/* ================================================= */}
 
-          {/* FORM */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="rounded-2xl bg-[#17352A] p-6 shadow-lg md:p-7"
+        {reviews.length > 0 ? (
+          <div
+            className="
+              flex
+              gap-4
+              overflow-x-auto
+              pb-3
+              snap-x
+              snap-mandatory
+              scrollbar-hide
+              md:grid
+              md:grid-cols-3
+              md:overflow-visible
+            "
           >
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#E2BD62]">
-              Your Feedback Matters
+            {reviews.slice(0, 6).map((review, index) => (
+              <motion.div
+                key={review.id}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.4,
+                  delay: Math.min(index * 0.05, 0.2),
+                }}
+                className="
+                  w-[285px]
+                  shrink-0
+                  snap-start
+                  sm:w-[320px]
+                  md:w-auto
+                "
+              >
+                <div
+                  className="
+                    flex
+                    min-h-[190px]
+                    h-full
+                    flex-col
+                    rounded-2xl
+                    bg-[#17352A]
+                    p-5
+                    shadow-md
+                    md:min-h-[205px]
+                    md:p-6
+                  "
+                >
+
+                  {/* STARS */}
+
+                  <div className="mb-3 flex gap-1">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star
+                        key={star}
+                        size={17}
+                        strokeWidth={1.8}
+                        fill={
+                          star <= review.rating
+                            ? "#C79A32"
+                            : "transparent"
+                        }
+                        className={
+                          star <= review.rating
+                            ? "text-[#C79A32]"
+                            : "text-[#667A70]"
+                        }
+                      />
+                    ))}
+                  </div>
+
+                  {/* FEEDBACK */}
+
+                  <p className="line-clamp-4 text-sm leading-6 text-[#D0D8D3]">
+                    “{review.review}”
+                  </p>
+
+                  {/* USER */}
+
+                  <div className="mt-auto border-t border-[#365448] pt-3">
+                    <p className="text-sm font-semibold text-white">
+                      {review.name}
+                    </p>
+
+                    <p className="mt-0.5 text-xs text-[#9DAEA6]">
+                      TREE HOUSE Guest
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <div
+            className="
+              mx-auto
+              max-w-md
+              rounded-2xl
+              bg-[#17352A]
+              px-5
+              py-7
+              text-center
+              shadow-md
+            "
+          >
+            <div className="mb-3 flex justify-center gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Star
+                  key={star}
+                  size={17}
+                  fill="#C79A32"
+                  className="text-[#C79A32]"
+                />
+              ))}
+            </div>
+
+            <p className="text-sm text-[#C5CEC8]">
+              Be the first to share your experience at TREE HOUSE.
             </p>
+          </div>
+        )}
 
-            <h3 className="mb-6 text-2xl font-bold text-white">
-              Share Your Feedback
-            </h3>
+        {/* ================================================= */}
+        {/* MOBILE SWIPE */}
+        {/* ================================================= */}
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+        {reviews.length > 1 && (
+          <p className="mt-2 text-center text-xs text-[#7C8881] md:hidden">
+            Swipe to see more →
+          </p>
+        )}
+
+        {/* ================================================= */}
+        {/* FEEDBACK BUTTON */}
+        {/* ================================================= */}
+
+        <div className="mt-6 flex justify-center md:mt-8">
+          <button
+            type="button"
+            onClick={() => {
+              setShowForm((prev) => !prev);
+              setMessage("");
+            }}
+            className="
+              group
+              inline-flex
+              items-center
+              gap-2
+              rounded-full
+              bg-[#C79A32]
+              px-6
+              py-3
+              text-sm
+              font-semibold
+              text-[#17352A]
+              shadow-md
+              transition-all
+              duration-300
+              hover:bg-[#E2BD62]
+              hover:shadow-lg
+              md:px-7
+            "
+          >
+            {showForm
+              ? "Close Feedback"
+              : "Share Your Feedback"}
+
+            <ArrowRight
+              size={17}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </button>
+        </div>
+
+        {/* ================================================= */}
+        {/* FEEDBACK FORM */}
+        {/* ================================================= */}
+
+        {showForm && (
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="
+              mx-auto
+              mt-6
+              max-w-xl
+              rounded-2xl
+              bg-[#17352A]
+              p-5
+              shadow-lg
+              md:mt-8
+              md:p-7
+            "
+          >
+
+            {/* FORM TITLE */}
+
+            <div className="mb-5 text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C79A32]">
+                Your Feedback Matters
+              </p>
+
+              <h3 className="mt-1 text-2xl font-bold text-white">
+                Share Your Experience
+              </h3>
+            </div>
+
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-4"
+            >
 
               {/* NAME */}
+
               <div>
-                <label className="mb-2 block text-sm font-medium text-white">
+                <label className="mb-1.5 block text-xs font-medium text-white">
                   Your Name
                 </label>
 
@@ -139,13 +366,27 @@ export default function Testimonials() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter your name"
-                  className="w-full rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white outline-none placeholder:text-[#B7C2BC] focus:border-[#E2BD62]"
+                  className="
+                    w-full
+                    rounded-lg
+                    border
+                    border-[#466257]
+                    bg-[#29483D]
+                    px-3
+                    py-2.5
+                    text-sm
+                    text-white
+                    outline-none
+                    placeholder:text-[#A9B6B0]
+                    focus:border-[#C79A32]
+                  "
                 />
               </div>
 
               {/* RATING */}
+
               <div>
-                <label className="mb-2 block text-sm font-medium text-white">
+                <label className="mb-1.5 block text-xs font-medium text-white">
                   Your Rating
                 </label>
 
@@ -158,17 +399,19 @@ export default function Testimonials() {
                       aria-label={`Rate ${star} star${
                         star > 1 ? "s" : ""
                       }`}
-                      className="p-0.5 transition-transform hover:scale-110"
+                      className="transition-transform hover:scale-110"
                     >
                       <Star
-                        size={25}
+                        size={22}
                         fill={
-                          star <= rating ? "#E2BD62" : "transparent"
+                          star <= rating
+                            ? "#C79A32"
+                            : "transparent"
                         }
                         className={
                           star <= rating
-                            ? "text-[#E2BD62]"
-                            : "text-[#718078]"
+                            ? "text-[#C79A32]"
+                            : "text-[#708179]"
                         }
                       />
                     </button>
@@ -176,109 +419,79 @@ export default function Testimonials() {
                 </div>
               </div>
 
-              {/* FEEDBACK */}
+              {/* COMMENT */}
+
               <div>
-                <label className="mb-2 block text-sm font-medium text-white">
+                <label className="mb-1.5 block text-xs font-medium text-white">
                   Your Feedback
                 </label>
 
                 <textarea
-                  value={review}
-                  onChange={(e) => setReview(e.target.value)}
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
                   placeholder="Share a few words about your experience..."
                   rows={3}
                   maxLength={500}
-                  className="w-full resize-none rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-sm leading-6 text-white outline-none placeholder:text-[#B7C2BC] focus:border-[#E2BD62]"
+                  className="
+                    w-full
+                    resize-none
+                    rounded-lg
+                    border
+                    border-[#466257]
+                    bg-[#29483D]
+                    px-3
+                    py-2.5
+                    text-sm
+                    leading-5
+                    text-white
+                    outline-none
+                    placeholder:text-[#A9B6B0]
+                    focus:border-[#C79A32]
+                  "
                 />
 
-                <p className="mt-1 text-right text-xs text-[#91A098]">
-                  {review.length}/500
+                <p className="mt-1 text-right text-[10px] text-[#9DAEA6]">
+                  {comment.length}/500
                 </p>
               </div>
 
-              {/* BUTTON */}
+              {/* SUBMIT */}
+
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full rounded-xl bg-[#C79A32] px-5 py-3 font-semibold text-[#17352A] transition hover:bg-[#E2BD62] disabled:cursor-not-allowed disabled:opacity-60"
+                className="
+                  w-full
+                  rounded-lg
+                  bg-[#C79A32]
+                  px-4
+                  py-3
+                  text-sm
+                  font-bold
+                  text-[#17352A]
+                  transition
+                  hover:bg-[#E2BD62]
+                  disabled:cursor-not-allowed
+                  disabled:opacity-60
+                "
               >
-                {submitting ? "Submitting..." : "Submit Feedback"}
+                {submitting
+                  ? "Submitting..."
+                  : "Submit Feedback"}
               </button>
 
+              {/* MESSAGE */}
+
               {message && (
-                <p className="text-center text-sm text-[#E2BD62]">
+                <p className="text-center text-xs font-medium text-[#E2BD62]">
                   {message}
                 </p>
               )}
 
             </form>
           </motion.div>
+        )}
 
-          {/* RECENT FEEDBACK */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="mb-5">
-              <h3 className="text-2xl font-bold text-[#1E2823]">
-                Recent Feedback
-              </h3>
-
-              <p className="mt-1 text-sm text-[#66706A]">
-                A few words from our guests.
-              </p>
-            </div>
-
-            {reviews.length === 0 ? (
-              <div className="rounded-2xl border border-[#DCD8CE] bg-white p-6 text-center">
-                <p className="text-sm text-[#66706A]">
-                  Be the first to share your experience.
-                </p>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                {reviews.slice(0, 3).map((item) => (
-                  <div
-                    key={item.id}
-                    className="rounded-2xl border border-[#E1DDD3] bg-white p-5 shadow-sm"
-                  >
-                    <div className="mb-2 flex items-center justify-between gap-3">
-                      <h4 className="font-semibold text-[#1E2823]">
-                        {item.name}
-                      </h4>
-
-                      <div className="flex gap-0.5">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <Star
-                            key={star}
-                            size={15}
-                            fill={
-                              star <= item.rating
-                                ? "#C79A32"
-                                : "transparent"
-                            }
-                            className={
-                              star <= item.rating
-                                ? "text-[#C79A32]"
-                                : "text-[#D0CBC0]"
-                            }
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    <p className="text-sm leading-6 text-[#66706A]">
-                      {item.review}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </motion.div>
-
-        </div>
       </div>
     </section>
   );
