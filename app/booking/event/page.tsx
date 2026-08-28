@@ -13,6 +13,8 @@ import {
   PartyPopper,
   IndianRupee,
 } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import PageCloseButton from "@/components/PageCloseButton";
 
 const WHATSAPP_NUMBER = "918876951989";
 
@@ -68,372 +70,376 @@ Please contact me regarding this event booking.
   };
 
   return (
-    <main className="min-h-screen bg-[#F7F4ED] px-5 py-16 md:px-8 md:py-20">
-      <div className="mx-auto max-w-4xl">
+    <>
+      <Navbar />
+      <PageCloseButton />
 
-        {/* Main Green Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="
-            overflow-hidden
-            rounded-[28px]
-            bg-[#17352A]
-            border border-[#C79A32]/30
-            shadow-[0_25px_70px_rgba(23,53,42,0.18)]
-          "
-        >
+      <main className="min-h-screen bg-[#F7F4ED] px-5 py-16 md:px-8 md:py-20">
+        <div className="mx-auto max-w-4xl">
 
-          {/* Header */}
-          <div className="px-7 pt-10 pb-8 text-center md:px-12 md:pt-14">
+          {/* Main Green Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="
+              overflow-hidden
+              rounded-[28px]
+              bg-[#17352A]
+              border border-[#C79A32]/30
+              shadow-[0_25px_70px_rgba(23,53,42,0.18)]
+            "
+          >
 
-            <p className="text-[#E2BD62] text-xs md:text-sm font-semibold uppercase tracking-[0.28em]">
-              CELEBRATE AT TREE HOUSE
-            </p>
+            {/* Header */}
+            <div className="px-7 pt-10 pb-8 text-center md:px-12 md:pt-14">
 
-            <h1 className="mt-4 text-4xl md:text-5xl font-bold text-white">
-              Book an Event
-            </h1>
+              <p className="text-[#E2BD62] text-xs md:text-sm font-semibold uppercase tracking-[0.28em]">
+                CELEBRATE AT TREE HOUSE
+              </p>
 
-            <div className="mx-auto mt-5 h-[2px] w-14 bg-[#C79A32]" />
+              <h1 className="mt-4 text-4xl md:text-5xl font-bold text-white">
+                Book an Event
+              </h1>
 
-            <p className="mx-auto mt-5 max-w-2xl text-[#C5CEC8] text-base md:text-lg leading-7">
-              Tell us about your event and let us help create
-              a memorable celebration at TREE HOUSE.
-            </p>
+              <div className="mx-auto mt-5 h-[2px] w-14 bg-[#C79A32]" />
 
-          </div>
+              <p className="mx-auto mt-5 max-w-2xl text-[#C5CEC8] text-base md:text-lg leading-7">
+                Tell us about your event and let us help create
+                a memorable celebration at TREE HOUSE.
+              </p>
 
-          {/* Form */}
-          <div className="px-7 pb-10 md:px-12 md:pb-14">
+            </div>
 
-            <form
-              onSubmit={handleSubmit}
-              className="grid gap-5 md:grid-cols-2"
-            >
+            {/* Form */}
+            <div className="px-7 pb-10 md:px-12 md:pb-14">
 
-              {/* Full Name */}
-              <div className="relative">
-                <User
-                  size={19}
-                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
-                />
+              <form
+                onSubmit={handleSubmit}
+                className="grid gap-5 md:grid-cols-2"
+              >
 
-                <input
-                  name="name"
-                  type="text"
-                  placeholder="Full Name"
-                  required
+                {/* Full Name */}
+                <div className="relative">
+                  <User
+                    size={19}
+                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                  />
+
+                  <input
+                    name="name"
+                    type="text"
+                    placeholder="Full Name"
+                    required
+                    className="
+                      w-full rounded-xl
+                      border border-white/15
+                      bg-[#204437]
+                      px-5 py-4 pl-12
+                      text-white
+                      outline-none
+                      placeholder:text-[#AEBBB4]
+                      transition
+                      focus:border-[#C79A32]
+                      focus:ring-2
+                      focus:ring-[#C79A32]/20
+                    "
+                  />
+                </div>
+
+                {/* Phone */}
+                <div className="relative">
+                  <Phone
+                    size={19}
+                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                  />
+
+                  <input
+                    name="phone"
+                    type="tel"
+                    placeholder="Phone Number"
+                    required
+                    className="
+                      w-full rounded-xl
+                      border border-white/15
+                      bg-[#204437]
+                      px-5 py-4 pl-12
+                      text-white
+                      outline-none
+                      placeholder:text-[#AEBBB4]
+                      transition
+                      focus:border-[#C79A32]
+                      focus:ring-2
+                      focus:ring-[#C79A32]/20
+                    "
+                  />
+                </div>
+
+                {/* Email */}
+                <div className="relative">
+                  <Mail
+                    size={19}
+                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                  />
+
+                  <input
+                    name="email"
+                    type="email"
+                    placeholder="Email Address"
+                    required
+                    className="
+                      w-full rounded-xl
+                      border border-white/15
+                      bg-[#204437]
+                      px-5 py-4 pl-12
+                      text-white
+                      outline-none
+                      placeholder:text-[#AEBBB4]
+                      transition
+                      focus:border-[#C79A32]
+                      focus:ring-2
+                      focus:ring-[#C79A32]/20
+                    "
+                  />
+                </div>
+
+                {/* Event Type */}
+                <div className="relative">
+                  <PartyPopper
+                    size={19}
+                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                  />
+
+                  <select
+                    name="eventType"
+                    required
+                    defaultValue=""
+                    className="
+                      w-full appearance-none rounded-xl
+                      border border-white/15
+                      bg-[#204437]
+                      px-5 py-4 pl-12
+                      text-white
+                      outline-none
+                      transition
+                      focus:border-[#C79A32]
+                      focus:ring-2
+                      focus:ring-[#C79A32]/20
+                    "
+                  >
+                    <option value="" disabled className="bg-[#204437]">
+                      Select Event Type
+                    </option>
+
+                    <option
+                      value="Birthday Celebration"
+                      className="bg-[#204437]"
+                    >
+                      Birthday Celebration
+                    </option>
+
+                    <option
+                      value="Wedding Reception"
+                      className="bg-[#204437]"
+                    >
+                      Wedding Reception
+                    </option>
+
+                    <option
+                      value="Private Dining"
+                      className="bg-[#204437]"
+                    >
+                      Private Dining
+                    </option>
+
+                    <option
+                      value="Corporate Event"
+                      className="bg-[#204437]"
+                    >
+                      Corporate Event
+                    </option>
+
+                    <option value="Other" className="bg-[#204437]">
+                      Other
+                    </option>
+                  </select>
+                </div>
+
+                {/* Date */}
+                <div className="relative">
+                  <CalendarDays
+                    size={19}
+                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                  />
+
+                  <input
+                    name="date"
+                    type="date"
+                    required
+                    className="
+                      w-full rounded-xl
+                      border border-white/15
+                      bg-[#204437]
+                      px-5 py-4 pl-12
+                      text-white
+                      outline-none
+                      transition
+                      focus:border-[#C79A32]
+                      focus:ring-2
+                      focus:ring-[#C79A32]/20
+                    "
+                  />
+                </div>
+
+                {/* Time */}
+                <div className="relative">
+                  <Clock
+                    size={19}
+                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                  />
+
+                  <input
+                    name="time"
+                    type="time"
+                    required
+                    className="
+                      w-full rounded-xl
+                      border border-white/15
+                      bg-[#204437]
+                      px-5 py-4 pl-12
+                      text-white
+                      outline-none
+                      transition
+                      focus:border-[#C79A32]
+                      focus:ring-2
+                      focus:ring-[#C79A32]/20
+                    "
+                  />
+                </div>
+
+                {/* Guests */}
+                <div className="relative">
+                  <Users
+                    size={19}
+                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                  />
+
+                  <input
+                    name="guests"
+                    type="number"
+                    min="1"
+                    placeholder="Number of Guests"
+                    required
+                    className="
+                      w-full rounded-xl
+                      border border-white/15
+                      bg-[#204437]
+                      px-5 py-4 pl-12
+                      text-white
+                      outline-none
+                      placeholder:text-[#AEBBB4]
+                      transition
+                      focus:border-[#C79A32]
+                      focus:ring-2
+                      focus:ring-[#C79A32]/20
+                    "
+                  />
+                </div>
+
+                {/* Budget */}
+                <div className="relative">
+                  <IndianRupee
+                    size={19}
+                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                  />
+
+                  <input
+                    name="budget"
+                    type="text"
+                    placeholder="Estimated Budget"
+                    className="
+                      w-full rounded-xl
+                      border border-white/15
+                      bg-[#204437]
+                      px-5 py-4 pl-12
+                      text-white
+                      outline-none
+                      placeholder:text-[#AEBBB4]
+                      transition
+                      focus:border-[#C79A32]
+                      focus:ring-2
+                      focus:ring-[#C79A32]/20
+                    "
+                  />
+                </div>
+
+                {/* Event Details */}
+                <div className="relative md:col-span-2">
+                  <MessageSquare
+                    size={19}
+                    className="absolute left-5 top-5 text-[#E2BD62]"
+                  />
+
+                  <textarea
+                    name="message"
+                    rows={5}
+                    placeholder="Tell us about your event..."
+                    className="
+                      w-full rounded-xl
+                      border border-white/15
+                      bg-[#204437]
+                      px-5 py-4 pl-12
+                      text-white
+                      outline-none
+                      resize-none
+                      placeholder:text-[#AEBBB4]
+                      transition
+                      focus:border-[#C79A32]
+                      focus:ring-2
+                      focus:ring-[#C79A32]/20
+                    "
+                  />
+                </div>
+
+                {/* Button */}
+                <button
+                  type="submit"
+                  disabled={loading}
                   className="
-                    w-full rounded-xl
-                    border border-white/15
-                    bg-[#204437]
-                    px-5 py-4 pl-12
-                    text-white
-                    outline-none
-                    placeholder:text-[#AEBBB4]
+                    md:col-span-2
+                    mt-2
+                    w-full
+                    rounded-xl
+                    bg-[#C79A32]
+                    py-4
+                    text-[#17352A]
+                    font-bold
+                    text-base
                     transition
-                    focus:border-[#C79A32]
-                    focus:ring-2
-                    focus:ring-[#C79A32]/20
-                  "
-                />
-              </div>
-
-              {/* Phone */}
-              <div className="relative">
-                <Phone
-                  size={19}
-                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
-                />
-
-                <input
-                  name="phone"
-                  type="tel"
-                  placeholder="Phone Number"
-                  required
-                  className="
-                    w-full rounded-xl
-                    border border-white/15
-                    bg-[#204437]
-                    px-5 py-4 pl-12
-                    text-white
-                    outline-none
-                    placeholder:text-[#AEBBB4]
-                    transition
-                    focus:border-[#C79A32]
-                    focus:ring-2
-                    focus:ring-[#C79A32]/20
-                  "
-                />
-              </div>
-
-              {/* Email */}
-              <div className="relative">
-                <Mail
-                  size={19}
-                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
-                />
-
-                <input
-                  name="email"
-                  type="email"
-                  placeholder="Email Address"
-                  required
-                  className="
-                    w-full rounded-xl
-                    border border-white/15
-                    bg-[#204437]
-                    px-5 py-4 pl-12
-                    text-white
-                    outline-none
-                    placeholder:text-[#AEBBB4]
-                    transition
-                    focus:border-[#C79A32]
-                    focus:ring-2
-                    focus:ring-[#C79A32]/20
-                  "
-                />
-              </div>
-
-              {/* Event Type */}
-              <div className="relative">
-                <PartyPopper
-                  size={19}
-                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
-                />
-
-                <select
-                  name="eventType"
-                  required
-                  defaultValue=""
-                  className="
-                    w-full appearance-none rounded-xl
-                    border border-white/15
-                    bg-[#204437]
-                    px-5 py-4 pl-12
-                    text-white
-                    outline-none
-                    transition
-                    focus:border-[#C79A32]
-                    focus:ring-2
-                    focus:ring-[#C79A32]/20
+                    hover:bg-[#E2BD62]
+                    hover:shadow-lg
+                    hover:shadow-[#C79A32]/20
+                    disabled:cursor-not-allowed
+                    disabled:opacity-60
                   "
                 >
-                  <option value="" disabled className="bg-[#204437]">
-                    Select Event Type
-                  </option>
+                  {loading
+                    ? "Opening WhatsApp..."
+                    : "Book Event on WhatsApp"}
+                </button>
 
-                  <option
-                    value="Birthday Celebration"
-                    className="bg-[#204437]"
-                  >
-                    Birthday Celebration
-                  </option>
+              </form>
 
-                  <option
-                    value="Wedding Reception"
-                    className="bg-[#204437]"
-                  >
-                    Wedding Reception
-                  </option>
+            </div>
+          </motion.div>
 
-                  <option
-                    value="Private Dining"
-                    className="bg-[#204437]"
-                  >
-                    Private Dining
-                  </option>
+          {/* Bottom Text */}
+          <p className="mt-8 text-center text-sm text-[#66706A]">
+            Birthdays • Weddings • Corporate Events • Private Dining
+          </p>
 
-                  <option
-                    value="Corporate Event"
-                    className="bg-[#204437]"
-                  >
-                    Corporate Event
-                  </option>
-
-                  <option value="Other" className="bg-[#204437]">
-                    Other
-                  </option>
-                </select>
-              </div>
-
-              {/* Date */}
-              <div className="relative">
-                <CalendarDays
-                  size={19}
-                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
-                />
-
-                <input
-                  name="date"
-                  type="date"
-                  required
-                  className="
-                    w-full rounded-xl
-                    border border-white/15
-                    bg-[#204437]
-                    px-5 py-4 pl-12
-                    text-white
-                    outline-none
-                    transition
-                    focus:border-[#C79A32]
-                    focus:ring-2
-                    focus:ring-[#C79A32]/20
-                  "
-                />
-              </div>
-
-              {/* Time */}
-              <div className="relative">
-                <Clock
-                  size={19}
-                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
-                />
-
-                <input
-                  name="time"
-                  type="time"
-                  required
-                  className="
-                    w-full rounded-xl
-                    border border-white/15
-                    bg-[#204437]
-                    px-5 py-4 pl-12
-                    text-white
-                    outline-none
-                    transition
-                    focus:border-[#C79A32]
-                    focus:ring-2
-                    focus:ring-[#C79A32]/20
-                  "
-                />
-              </div>
-
-              {/* Guests */}
-              <div className="relative">
-                <Users
-                  size={19}
-                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
-                />
-
-                <input
-                  name="guests"
-                  type="number"
-                  min="1"
-                  placeholder="Number of Guests"
-                  required
-                  className="
-                    w-full rounded-xl
-                    border border-white/15
-                    bg-[#204437]
-                    px-5 py-4 pl-12
-                    text-white
-                    outline-none
-                    placeholder:text-[#AEBBB4]
-                    transition
-                    focus:border-[#C79A32]
-                    focus:ring-2
-                    focus:ring-[#C79A32]/20
-                  "
-                />
-              </div>
-
-              {/* Budget */}
-              <div className="relative">
-                <IndianRupee
-                  size={19}
-                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
-                />
-
-                <input
-                  name="budget"
-                  type="text"
-                  placeholder="Estimated Budget"
-                  className="
-                    w-full rounded-xl
-                    border border-white/15
-                    bg-[#204437]
-                    px-5 py-4 pl-12
-                    text-white
-                    outline-none
-                    placeholder:text-[#AEBBB4]
-                    transition
-                    focus:border-[#C79A32]
-                    focus:ring-2
-                    focus:ring-[#C79A32]/20
-                  "
-                />
-              </div>
-
-              {/* Event Details */}
-              <div className="relative md:col-span-2">
-                <MessageSquare
-                  size={19}
-                  className="absolute left-5 top-5 text-[#E2BD62]"
-                />
-
-                <textarea
-                  name="message"
-                  rows={5}
-                  placeholder="Tell us about your event..."
-                  className="
-                    w-full rounded-xl
-                    border border-white/15
-                    bg-[#204437]
-                    px-5 py-4 pl-12
-                    text-white
-                    outline-none
-                    resize-none
-                    placeholder:text-[#AEBBB4]
-                    transition
-                    focus:border-[#C79A32]
-                    focus:ring-2
-                    focus:ring-[#C79A32]/20
-                  "
-                />
-              </div>
-
-              {/* Button */}
-              <button
-                type="submit"
-                disabled={loading}
-                className="
-                  md:col-span-2
-                  mt-2
-                  w-full
-                  rounded-xl
-                  bg-[#C79A32]
-                  py-4
-                  text-[#17352A]
-                  font-bold
-                  text-base
-                  transition
-                  hover:bg-[#E2BD62]
-                  hover:shadow-lg
-                  hover:shadow-[#C79A32]/20
-                  disabled:cursor-not-allowed
-                  disabled:opacity-60
-                "
-              >
-                {loading
-                  ? "Opening WhatsApp..."
-                  : "Book Event on WhatsApp"}
-              </button>
-
-            </form>
-
-          </div>
-
-        </motion.div>
-
-        {/* Bottom Text */}
-        <p className="mt-8 text-center text-sm text-[#66706A]">
-          Birthdays • Weddings • Corporate Events • Private Dining
-        </p>
-
-      </div>
-    </main>
+        </div>
+      </main>
+    </>
   );
 }

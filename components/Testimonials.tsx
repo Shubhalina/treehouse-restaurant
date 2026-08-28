@@ -7,16 +7,18 @@ import { Star } from "lucide-react";
 type Review = {
   id: string;
   name: string;
-  review: string;
   rating: number;
+  review: string;
+  createdAt?: string;
 };
 
 export default function Testimonials() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [name, setName] = useState("");
-  const [review, setReview] = useState("");
   const [rating, setRating] = useState(5);
-  const [loading, setLoading] = useState(false);
+  const [review, setReview] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     fetch("/api/reviews")
@@ -35,152 +37,100 @@ export default function Testimonials() {
     e.preventDefault();
 
     if (!name.trim() || !review.trim()) {
-      alert("Please enter your name and review.");
+      setMessage("Please enter your name and feedback.");
       return;
     }
 
-    setLoading(true);
+    setSubmitting(true);
+    setMessage("");
 
     try {
-      const res = await fetch("/api/reviews", {
+      const response = await fetch("/api/reviews", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: name.trim(),
-          review: review.trim(),
           rating,
+          review: review.trim(),
         }),
       });
 
-      const data = await res.json();
+      const data = await response.json();
 
-      if (res.ok) {
-        setReviews((prev) => [data, ...prev]);
-        setName("");
-        setReview("");
-        setRating(5);
-      } else {
-        alert(data.error || "Unable to submit review.");
+      if (!response.ok) {
+        throw new Error(data?.error || "Failed to submit feedback");
       }
-    } catch {
-      alert("Unable to submit review.");
+
+      setReviews((prev) => [data, ...prev]);
+
+      setName("");
+      setRating(5);
+      setReview("");
+      setMessage("Thank you for your feedback!");
+    } catch (error) {
+      console.error(error);
+      setMessage("Something went wrong. Please try again.");
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 
   return (
     <section
-      id="testimonials"
-      className="bg-[#F7F4ED] py-20 md:py-24 px-6 scroll-mt-20"
+      id="feedback"
+      className="bg-[#F7F4ED] px-5 py-16 md:px-6 md:py-20"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto max-w-6xl">
 
-        {/* Heading */}
+        {/* HEADING */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-14"
+          className="mb-10 text-center"
         >
-          <p className="text-[#B18424] uppercase tracking-[0.25em] text-sm font-semibold mb-4">
-            Guest Experiences
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-[#B18424]">
+            Guest Feedback
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-[#1E2823]">
-            What Our Guests Say
+          <h2 className="text-3xl font-bold text-[#1E2823] md:text-4xl">
+            What Did You Think?
           </h2>
 
-          <div className="w-14 h-[2px] bg-[#C79A32] mx-auto mt-5 mb-5" />
+          <div className="mx-auto mt-4 mb-4 h-[2px] w-12 bg-[#C79A32]" />
 
-          <p className="text-[#66706A] text-base md:text-lg leading-7">
-            Every visit creates a story. Share yours with us.
+          <p className="mx-auto max-w-xl text-sm leading-6 text-[#66706A] md:text-base">
+            We&apos;d love to hear about your experience at TREE HOUSE.
           </p>
         </motion.div>
 
-        {/* Reviews */}
-        {reviews.length > 0 && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7 mb-16">
-            {reviews.map((item, index) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.08,
-                }}
-                whileHover={{ y: -5 }}
-                className="bg-white rounded-2xl border border-[#E2DDD2] p-7 shadow-sm"
-              >
-                {/* Stars */}
-                <div className="flex gap-1 mb-5">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star
-                      key={star}
-                      size={18}
-                      className={
-                        star <= item.rating
-                          ? "text-[#C79A32] fill-[#C79A32]"
-                          : "text-[#D8D3C8]"
-                      }
-                    />
-                  ))}
-                </div>
+        {/* FEEDBACK + RECENT FEEDBACK */}
+        <div className="grid gap-8 lg:grid-cols-2">
 
-                {/* Review */}
-                <p className="text-[#59645D] leading-7">
-                  “{item.review}”
-                </p>
+          {/* FORM */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="rounded-2xl bg-[#17352A] p-6 shadow-lg md:p-7"
+          >
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#E2BD62]">
+              Your Feedback Matters
+            </p>
 
-                {/* Guest */}
-                <div className="mt-6 pt-5 border-t border-[#E8E3D9]">
-                  <h3 className="font-semibold text-[#1E2823]">
-                    {item.name}
-                  </h3>
+            <h3 className="mb-6 text-2xl font-bold text-white">
+              Share Your Feedback
+            </h3>
 
-                  <p className="text-xs text-[#8A918C] mt-1 uppercase tracking-wider">
-                    Guest
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
+            <form onSubmit={handleSubmit} className="space-y-4">
 
-        {/* Write Review */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-2xl mx-auto"
-        >
-          <div className="bg-[#17352A] rounded-3xl p-8 md:p-10 shadow-xl">
-
-            <div className="text-center mb-8">
-              <p className="text-[#E2BD62] uppercase tracking-[0.2em] text-xs font-semibold mb-3">
-                Your Experience Matters
-              </p>
-
-              <h3 className="text-3xl font-bold text-white">
-                Share Your Experience
-              </h3>
-
-              <p className="text-[#C5CEC8] mt-3">
-                Tell us about your time at TREE HOUSE.
-              </p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-5">
-
-              {/* Name */}
+              {/* NAME */}
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="mb-2 block text-sm font-medium text-white">
                   Your Name
                 </label>
 
@@ -189,32 +139,35 @@ export default function Testimonials() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter your name"
-                  className="w-full rounded-xl border border-white/15 bg-white/10 text-white placeholder:text-[#AEBBB4] px-4 py-3 outline-none focus:border-[#C79A32] focus:ring-1 focus:ring-[#C79A32]"
+                  className="w-full rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-sm text-white outline-none placeholder:text-[#B7C2BC] focus:border-[#E2BD62]"
                 />
               </div>
 
-              {/* Rating */}
+              {/* RATING */}
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="mb-2 block text-sm font-medium text-white">
                   Your Rating
                 </label>
 
-                <div className="flex gap-2">
+                <div className="flex gap-1">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <button
                       key={star}
                       type="button"
                       onClick={() => setRating(star)}
-                      className="transition-transform hover:scale-110"
-                      aria-label={`Give ${star} star${
+                      aria-label={`Rate ${star} star${
                         star > 1 ? "s" : ""
                       }`}
+                      className="p-0.5 transition-transform hover:scale-110"
                     >
                       <Star
-                        size={27}
+                        size={25}
+                        fill={
+                          star <= rating ? "#E2BD62" : "transparent"
+                        }
                         className={
                           star <= rating
-                            ? "text-[#E2BD62] fill-[#E2BD62]"
+                            ? "text-[#E2BD62]"
                             : "text-[#718078]"
                         }
                       />
@@ -223,34 +176,109 @@ export default function Testimonials() {
                 </div>
               </div>
 
-              {/* Review */}
+              {/* FEEDBACK */}
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
-                  Your Review
+                <label className="mb-2 block text-sm font-medium text-white">
+                  Your Feedback
                 </label>
 
                 <textarea
                   value={review}
                   onChange={(e) => setReview(e.target.value)}
-                  placeholder="Tell us about your experience..."
-                  rows={5}
-                  className="w-full rounded-xl border border-white/15 bg-white/10 text-white placeholder:text-[#AEBBB4] px-4 py-3 outline-none resize-none focus:border-[#C79A32] focus:ring-1 focus:ring-[#C79A32]"
+                  placeholder="Share a few words about your experience..."
+                  rows={3}
+                  maxLength={500}
+                  className="w-full resize-none rounded-xl border border-white/15 bg-white/10 px-4 py-3 text-sm leading-6 text-white outline-none placeholder:text-[#B7C2BC] focus:border-[#E2BD62]"
                 />
+
+                <p className="mt-1 text-right text-xs text-[#91A098]">
+                  {review.length}/500
+                </p>
               </div>
 
-              {/* Submit */}
+              {/* BUTTON */}
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full bg-[#C79A32] hover:bg-[#D6AA45] disabled:opacity-50 text-[#17352A] font-semibold py-3.5 rounded-full transition duration-300"
+                disabled={submitting}
+                className="w-full rounded-xl bg-[#C79A32] px-5 py-3 font-semibold text-[#17352A] transition hover:bg-[#E2BD62] disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {loading ? "Submitting..." : "Share Review"}
+                {submitting ? "Submitting..." : "Submit Feedback"}
               </button>
 
-            </form>
-          </div>
-        </motion.div>
+              {message && (
+                <p className="text-center text-sm text-[#E2BD62]">
+                  {message}
+                </p>
+              )}
 
+            </form>
+          </motion.div>
+
+          {/* RECENT FEEDBACK */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="mb-5">
+              <h3 className="text-2xl font-bold text-[#1E2823]">
+                Recent Feedback
+              </h3>
+
+              <p className="mt-1 text-sm text-[#66706A]">
+                A few words from our guests.
+              </p>
+            </div>
+
+            {reviews.length === 0 ? (
+              <div className="rounded-2xl border border-[#DCD8CE] bg-white p-6 text-center">
+                <p className="text-sm text-[#66706A]">
+                  Be the first to share your experience.
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {reviews.slice(0, 3).map((item) => (
+                  <div
+                    key={item.id}
+                    className="rounded-2xl border border-[#E1DDD3] bg-white p-5 shadow-sm"
+                  >
+                    <div className="mb-2 flex items-center justify-between gap-3">
+                      <h4 className="font-semibold text-[#1E2823]">
+                        {item.name}
+                      </h4>
+
+                      <div className="flex gap-0.5">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <Star
+                            key={star}
+                            size={15}
+                            fill={
+                              star <= item.rating
+                                ? "#C79A32"
+                                : "transparent"
+                            }
+                            className={
+                              star <= item.rating
+                                ? "text-[#C79A32]"
+                                : "text-[#D0CBC0]"
+                            }
+                          />
+                        ))}
+                      </div>
+                    </div>
+
+                    <p className="text-sm leading-6 text-[#66706A]">
+                      {item.review}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );

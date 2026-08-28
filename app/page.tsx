@@ -1,10 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import About from "@/components/About";
-import Gallery from "@/components/Gallery";
-import Menu from "@/components/Menu";
 import EventPackages from "@/components/EventPackages";
+import Menu from "@/components/Menu";
+import Gallery from "@/components/Gallery";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
@@ -16,11 +14,9 @@ export default function Home() {
     <main>
       <Navbar />
       <Hero />
-      <Services />
-      <About />
-      <Gallery />
+      <EventPackages /> 
       <Menu />
-      <EventPackages />
+      <Gallery />
       <WhyChooseUs />
       <Testimonials />
       <Contact />
