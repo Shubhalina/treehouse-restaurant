@@ -29,6 +29,10 @@ const galleryImages = [
     alt: "TREE HOUSE restaurant",
   },
   {
+    src: "/images/gallery6.jpg",
+    alt: "TREE HOUSE restaurant",
+  },
+  {
     src: "/images/gallery12.jpg",
     alt: "TREE HOUSE restaurant experience",
   },
@@ -38,10 +42,6 @@ const galleryImages = [
   },
   {
     src: "/images/gallery5.jpg",
-    alt: "TREE HOUSE restaurant",
-  },
-  {
-    src: "/images/gallery6.jpg",
     alt: "TREE HOUSE restaurant",
   },
   {
