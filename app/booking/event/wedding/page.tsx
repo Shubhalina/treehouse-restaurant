@@ -3,6 +3,8 @@
 import Navbar from "@/components/Navbar";
 import PageCloseButton from "@/components/PageCloseButton";
 
+const WHATSAPP_NUMBER = "918876951989";
+
 const weddingPackages = [
   {
     name: "Signature Wedding Package",
@@ -32,6 +34,7 @@ const weddingPackages = [
       "Dedicated event coordinator",
     ],
   },
+
   {
     name: "Royal Wedding Package",
     price: "₹1,799",
@@ -68,6 +71,7 @@ const weddingPackages = [
       "Bride & groom special dinner",
     ],
   },
+
   {
     name: "Grand Wedding Package",
     price: "₹2,399",
@@ -140,43 +144,50 @@ export default function WeddingPage() {
 
       <main className="min-h-screen bg-[#F7F3EA]">
 
+        {/* ================================================= */}
         {/* PAGE HEADER */}
-        <section className="max-w-7xl mx-auto px-6 pt-16 md:pt-20 pb-8">
+        {/* ================================================= */}
+
+        <section className="mx-auto max-w-7xl px-5 pt-16 pb-8 md:px-6 md:pt-20">
 
           <div className="text-center">
 
-            <p className="text-[#C79A32] uppercase tracking-[0.25em] text-sm font-semibold">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C79A32]">
               Wedding & Reception
             </p>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-[#17352A] mt-4">
+            <h1 className="mt-4 text-4xl font-bold text-[#17352A] md:text-5xl">
               Wedding Packages
             </h1>
 
-            <div className="w-14 h-[2px] bg-[#C79A32] mx-auto mt-5 mb-6" />
+            <div className="mx-auto mt-5 h-[2px] w-14 bg-[#C79A32]" />
 
-            <p className="text-[#68736D] text-lg max-w-3xl mx-auto leading-8">
+            <p className="mx-auto mt-5 max-w-3xl text-base leading-7 text-[#68736D] md:text-lg">
               Choose from our proposed wedding and reception packages.
             </p>
 
           </div>
 
           {/* PRICE NOTE */}
+
           <div
             className="
-              mt-10
-              bg-white
-              border border-[#E2BD62]
+              mt-8
               rounded-2xl
-              p-6 md:p-8
+              border
+              border-[#E2BD62]
+              bg-white
+              p-5
               text-center
+              md:mt-10
+              md:p-8
             "
           >
-            <h2 className="text-xl font-bold text-[#17352A] mb-3">
+            <h2 className="mb-3 text-xl font-bold text-[#17352A]">
               Proposed / Estimated Package Prices
             </h2>
 
-            <p className="text-[#68736D] leading-7 max-w-6xl mx-auto">
+            <p className="mx-auto max-w-6xl leading-7 text-[#68736D]">
               The prices shown are proposed package rates for discussion
               purposes and are not confirmed final TREE HOUSE tariffs.
               Final pricing will be confirmed based on the event date,
@@ -187,165 +198,197 @@ export default function WeddingPage() {
 
         </section>
 
+        {/* ================================================= */}
         {/* WEDDING PACKAGES */}
-        <section className="max-w-7xl mx-auto px-6 py-8">
+        {/* ================================================= */}
 
-          <div className="grid lg:grid-cols-3 gap-7">
+        <section className="mx-auto max-w-7xl px-5 py-8 md:px-6">
+
+          <div className="grid gap-5 lg:grid-cols-3 md:gap-7">
 
             {weddingPackages.map((pkg) => (
+
               <div
                 key={pkg.name}
                 className="
-                  bg-[#17352A]
-                  text-white
+                  flex
+                  flex-col
                   rounded-2xl
-                  p-7
+                  border
+                  border-[#2D5A49]
+                  bg-[#17352A]
+                  p-5
+                  text-white
                   shadow-lg
-                  border border-[#2D5A49]
-                  flex flex-col
+                  md:p-7
                 "
               >
 
-                {/* Package Name */}
-                <h2 className="text-2xl font-bold mb-6">
+                {/* PACKAGE NAME */}
+
+                <h2 className="mb-5 text-2xl font-bold">
                   {pkg.name}
                 </h2>
 
-                {/* Price */}
+                {/* PRICE */}
+
                 <div className="mb-2">
 
-                  <span className="text-[#E2BD62] text-4xl font-bold">
+                  <span className="text-4xl font-bold text-[#E2BD62]">
                     {pkg.price}
                   </span>
 
-                  <span className="text-[#C5CEC8] ml-2">
+                  <span className="ml-2 text-[#C5CEC8]">
                     / person
                   </span>
 
                 </div>
 
-                <p className="text-[#E2BD62] font-semibold text-sm mb-4">
+                <p className="mb-4 text-sm font-semibold text-[#E2BD62]">
                   Proposed / Estimated Price
                 </p>
 
-                <p className="text-[#C5CEC8] mb-6">
+                <p className="mb-6 text-[#C5CEC8]">
                   {pkg.minimum}
                 </p>
 
-                {/* Estimated Total */}
+                {/* ESTIMATED TOTAL */}
+
                 <div
                   className="
-                    bg-[#214C3E]
-                    border border-[#376956]
-                    rounded-xl
-                    p-5
                     mb-7
+                    rounded-xl
+                    border
+                    border-[#376956]
+                    bg-[#214C3E]
+                    p-5
                   "
                 >
-                  <p className="text-[#AEBBB4] text-sm">
+                  <p className="text-sm text-[#AEBBB4]">
                     Estimated package for 200 guests
                   </p>
 
-                  <p className="text-white text-2xl font-bold mt-2">
+                  <p className="mt-2 text-2xl font-bold text-white">
                     {pkg.estimated}
                   </p>
                 </div>
 
-                {/* Features */}
-                <h3 className="text-[#E2BD62] font-semibold text-lg mb-4">
+                {/* FEATURES */}
+
+                <h3 className="mb-4 text-lg font-semibold text-[#E2BD62]">
                   Package Includes
                 </h3>
 
-                <ul className="space-y-3 flex-1">
+                <ul className="flex-1 space-y-3">
 
                   {pkg.features.map((feature) => (
+
                     <li
                       key={feature}
                       className="flex gap-3 text-[#C5CEC8]"
                     >
-                      <span className="text-[#E2BD62] shrink-0">
+                      <span className="shrink-0 text-[#E2BD62]">
                         ✓
                       </span>
 
-                      <span>{feature}</span>
+                      <span>
+                        {feature}
+                      </span>
                     </li>
+
                   ))}
 
                 </ul>
 
-                {/* Inquiry Button */}
+                {/* ================================================= */}
+                {/* PACKAGE WHATSAPP INQUIRY */}
+                {/* ================================================= */}
+
                 <a
-                  href={`https://wa.me/?text=${encodeURIComponent(
-                    `Hello TREE HOUSE, I am interested in the ${pkg.name}. Please share more details about this wedding package.`
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                    `Hello TREE HOUSE Restaurant,
+
+I am interested in the ${pkg.name}.
+
+Please share more details about this wedding package, availability, pricing and booking process.`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
                     mt-8
-                    w-full
                     inline-flex
+                    w-full
                     items-center
                     justify-center
                     rounded-xl
                     bg-[#C79A32]
                     px-6
                     py-4
-                    text-[#17352A]
-                    font-bold
                     text-lg
-                    hover:bg-[#E2BD62]
+                    font-bold
+                    text-[#17352A]
                     transition-all
                     duration-300
+                    hover:bg-[#E2BD62]
                   "
                 >
                   Enquire About This Package
                 </a>
 
               </div>
+
             ))}
 
           </div>
 
         </section>
 
+        {/* ================================================= */}
         {/* ADDITIONAL OPTIONS */}
-        <section className="max-w-5xl mx-auto px-6 pt-12 pb-8">
+        {/* ================================================= */}
 
-          <div className="text-center mb-10">
+        <section className="mx-auto max-w-5xl px-5 pt-10 pb-8 md:px-6 md:pt-12">
 
-            <p className="text-[#C79A32] uppercase tracking-[0.25em] text-sm font-semibold">
+          <div className="mb-8 text-center md:mb-10">
+
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C79A32]">
               Additional Options
             </p>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-[#17352A] mt-3">
+            <h2 className="mt-3 text-3xl font-bold text-[#17352A] md:text-4xl">
               Optional Services
             </h2>
 
-            <div className="w-14 h-[2px] bg-[#C79A32] mx-auto mt-5" />
+            <div className="mx-auto mt-5 h-[2px] w-14 bg-[#C79A32]" />
 
           </div>
 
           <div
             className="
-              bg-white
-              rounded-2xl
-              border border-[#E2BD62]
               overflow-hidden
+              rounded-2xl
+              border
+              border-[#E2BD62]
+              bg-white
               shadow-sm
             "
           >
 
             {optionalServices.map(([service, price], index) => (
+
               <div
                 key={service}
                 className={`
-                  flex flex-col
+                  flex
+                  flex-col
+                  gap-2
+                  px-5
+                  py-4
                   sm:flex-row
                   sm:items-center
                   sm:justify-between
-                  gap-2
-                  px-6
-                  py-5
+                  md:px-6
+                  md:py-5
                   ${
                     index !== optionalServices.length - 1
                       ? "border-b border-[#E5DED1]"
@@ -354,42 +397,54 @@ export default function WeddingPage() {
                 `}
               >
 
-                <span className="text-[#17352A] font-medium">
+                <span className="font-medium text-[#17352A]">
                   {service}
                 </span>
 
-                <span className="text-[#C79A32] font-semibold">
+                <span className="font-semibold text-[#C79A32]">
                   {price}
                 </span>
 
               </div>
+
             ))}
 
           </div>
 
         </section>
 
+        {/* ================================================= */}
         {/* FINAL CONTACT */}
-        <section className="max-w-4xl mx-auto px-6 pt-8 pb-16">
+        {/* ================================================= */}
 
-          <div className="bg-[#17352A] rounded-2xl p-8 md:p-12 text-center">
+        <section className="mx-auto max-w-4xl px-5 pt-8 pb-14 md:px-6 md:pb-16">
 
-            <p className="text-[#E2BD62] uppercase tracking-[0.2em] text-sm font-semibold">
+          <div className="rounded-2xl bg-[#17352A] p-7 text-center md:p-12">
+
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#E2BD62]">
               Planning Your Special Day?
             </p>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-3">
+            <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">
               Let's Plan Your Wedding Together
             </h2>
 
-            <p className="text-[#C5CEC8] mt-4 leading-7 max-w-2xl mx-auto">
+            <p className="mx-auto mt-4 max-w-2xl leading-7 text-[#C5CEC8]">
               Contact TREE HOUSE to discuss your wedding date, guest count,
               menu, decoration and package requirements.
             </p>
 
+            {/* ================================================= */}
+            {/* WEDDING CONTACT WHATSAPP */}
+            {/* ================================================= */}
+
             <a
-              href={`https://wa.me/?text=${encodeURIComponent(
-                "Hello TREE HOUSE, I would like to enquire about wedding and reception packages."
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                `Hello TREE HOUSE Restaurant,
+
+I would like to enquire about your Wedding & Reception packages.
+
+Please share the available packages, pricing, availability and booking details.`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -402,12 +457,12 @@ export default function WeddingPage() {
                 bg-[#C79A32]
                 px-8
                 py-4
-                text-[#17352A]
-                font-bold
                 text-lg
-                hover:bg-[#E2BD62]
+                font-bold
+                text-[#17352A]
                 transition-all
                 duration-300
+                hover:bg-[#E2BD62]
               "
             >
               Contact Us About Your Wedding
