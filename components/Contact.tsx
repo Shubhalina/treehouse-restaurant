@@ -10,7 +10,12 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+const WHATSAPP_NUMBER = "918876951989";
+
 export default function Contact() {
+  const whatsappMessage =
+    "Hello TREE HOUSE Restaurant,\n\nI would like to get in touch with you. Please share more information.";
+
   return (
     <section
       id="contact"
@@ -52,7 +57,7 @@ export default function Contact() {
         <div className="grid gap-4 lg:grid-cols-2 lg:gap-5">
 
           {/* ================================================= */}
-          {/* CONTACT INFORMATION - WHITE BOX */}
+          {/* CONTACT INFORMATION */}
           {/* ================================================= */}
 
           <motion.div
@@ -126,7 +131,14 @@ export default function Contact() {
 
                   <a
                     href="tel:+918876951989"
-                    className="mt-0.5 block text-xs text-[#66706A] transition hover:text-[#B18424]"
+                    className="
+                      mt-0.5
+                      block
+                      text-xs
+                      text-[#66706A]
+                      transition
+                      hover:text-[#B18424]
+                    "
                   >
                     +91 88769 51989
                   </a>
@@ -150,7 +162,15 @@ export default function Contact() {
 
                   <a
                     href="mailto:info@treehouserestaurant.com"
-                    className="mt-0.5 block break-all text-xs text-[#66706A] transition hover:text-[#B18424]"
+                    className="
+                      mt-0.5
+                      block
+                      break-all
+                      text-xs
+                      text-[#66706A]
+                      transition
+                      hover:text-[#B18424]
+                    "
                   >
                     info@treehouserestaurant.com
                   </a>
@@ -182,10 +202,14 @@ export default function Contact() {
 
             </div>
 
+            {/* ================================================= */}
             {/* WHATSAPP */}
+            {/* ================================================= */}
 
             <a
-              href="https://wa.me/"
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                whatsappMessage
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="
@@ -215,7 +239,7 @@ export default function Contact() {
           </motion.div>
 
           {/* ================================================= */}
-          {/* MAP - WHITE BOX */}
+          {/* MAP */}
           {/* ================================================= */}
 
           <motion.div

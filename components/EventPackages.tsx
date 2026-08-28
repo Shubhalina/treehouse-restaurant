@@ -6,6 +6,8 @@ import {
   BriefcaseBusiness,
 } from "lucide-react";
 
+const WHATSAPP_NUMBER = "918876951989";
+
 const eventPackages = [
   {
     icon: Utensils,
@@ -13,6 +15,8 @@ const eventPackages = [
     text: "Celebrate unforgettable birthdays with decoration, food, music, and joyful memories.",
     button: "Enquire for Details",
     whatsapp: true,
+    message:
+      "Hello TREE HOUSE Restaurant,\n\nI would like to enquire about a Birthday Celebration. Please share the available packages, pricing and details.",
   },
   {
     icon: Heart,
@@ -27,6 +31,8 @@ const eventPackages = [
     text: "Enjoy a peaceful and comfortable experience with family and friends in our private cottages.",
     button: "Enquire for Details",
     whatsapp: true,
+    message:
+      "Hello TREE HOUSE Restaurant,\n\nI would like to enquire about your Private Cottage. Please share the availability, pricing and details.",
   },
   {
     icon: BriefcaseBusiness,
@@ -34,6 +40,8 @@ const eventPackages = [
     text: "Host conferences, corporate gatherings and business events in a comfortable and professional setting.",
     button: "Enquire for Details",
     whatsapp: true,
+    message:
+      "Hello TREE HOUSE Restaurant,\n\nI would like to enquire about Conference & Corporate Events. Please share the available packages, pricing and details.",
   },
 ];
 
@@ -41,27 +49,27 @@ export default function EventPackages() {
   return (
     <section
       id="events"
-      className="bg-[#F7F3EA] py-12 md:py-16 px-5 md:px-6"
+      className="bg-[#F7F3EA] px-5 py-12 md:px-6 md:py-16"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="mx-auto max-w-7xl">
 
         {/* ================================================= */}
         {/* HEADING */}
         {/* ================================================= */}
 
-        <div className="text-center mb-9 md:mb-11">
+        <div className="mb-9 text-center md:mb-11">
 
-          <p className="text-[#C79A32] uppercase tracking-[0.2em] text-xs md:text-sm font-semibold mb-2">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#C79A32] md:text-sm">
             Our Services
           </p>
 
-          <h2 className="text-3xl md:text-5xl font-bold text-[#17352A]">
+          <h2 className="text-3xl font-bold text-[#17352A] md:text-5xl">
             Event Packages
           </h2>
 
-          <div className="w-12 h-[2px] bg-[#C79A32] mx-auto mt-4" />
+          <div className="mx-auto mt-4 h-[2px] w-12 bg-[#C79A32]" />
 
-          <p className="text-[#68736D] text-sm md:text-lg mt-4 max-w-2xl mx-auto leading-6 md:leading-7">
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-[#68736D] md:text-lg md:leading-7">
             From celebrations to corporate gatherings, we offer
             comfortable spaces and memorable experiences for every occasion.
           </p>
@@ -72,7 +80,7 @@ export default function EventPackages() {
         {/* FOUR CARDS */}
         {/* ================================================= */}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-5">
 
           {eventPackages.map((item) => {
             const Icon = item.icon;
@@ -81,18 +89,18 @@ export default function EventPackages() {
               <div
                 key={item.title}
                 className="
-                  bg-[#17352A]
+                  flex
+                  min-h-0
+                  flex-col
                   rounded-xl
-                  md:rounded-2xl
-                  p-5
-                  md:p-6
-                  text-white
                   border
                   border-[#2D5A49]
+                  bg-[#17352A]
+                  p-5
+                  text-white
                   shadow-md
-                  flex
-                  flex-col
-                  min-h-0
+                  md:rounded-2xl
+                  md:p-6
                 "
               >
 
@@ -102,17 +110,17 @@ export default function EventPackages() {
 
                 <div
                   className="
-                    w-11
-                    h-11
-                    md:w-12
-                    md:h-12
-                    rounded-full
-                    bg-[#C79A32]/20
+                    mb-4
                     flex
+                    h-11
+                    w-11
                     items-center
                     justify-center
-                    mb-4
+                    rounded-full
+                    bg-[#C79A32]/20
                     md:mb-5
+                    md:h-12
+                    md:w-12
                   "
                 >
                   <Icon
@@ -125,7 +133,7 @@ export default function EventPackages() {
                 {/* TITLE */}
                 {/* ================================================= */}
 
-                <h3 className="text-lg md:text-xl font-bold leading-snug mb-3">
+                <h3 className="mb-3 text-lg font-bold leading-snug md:text-xl">
                   {item.title}
                 </h3>
 
@@ -133,7 +141,7 @@ export default function EventPackages() {
                 {/* DESCRIPTION */}
                 {/* ================================================= */}
 
-                <p className="text-[#C5CEC8] text-sm leading-6 flex-1">
+                <p className="flex-1 text-sm leading-6 text-[#C5CEC8]">
                   {item.text}
                 </p>
 
@@ -144,17 +152,18 @@ export default function EventPackages() {
                 <div className="mt-5">
 
                   {item.wedding ? (
+
                     <Link
                       href="/booking/event/wedding"
                       className="
                         inline-flex
                         items-center
                         gap-2
-                        text-[#E2BD62]
                         text-sm
                         font-semibold
-                        hover:text-white
+                        text-[#E2BD62]
                         transition-colors
+                        hover:text-white
                       "
                     >
                       View Wedding Packages
@@ -163,26 +172,33 @@ export default function EventPackages() {
                         →
                       </span>
                     </Link>
+
                   ) : (
+
                     <a
-                      href="https://wa.me/"
+                      href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                        item.message || ""
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="
                         inline-flex
                         items-center
                         gap-2
-                        text-[#E2BD62]
                         text-sm
                         font-semibold
-                        hover:text-white
+                        text-[#E2BD62]
                         transition-colors
+                        hover:text-white
                       "
                     >
-                      Enquire for Details
+                      {item.button}
 
                       <span className="text-lg leading-none">
                         →
                       </span>
                     </a>
+
                   )}
 
                 </div>
