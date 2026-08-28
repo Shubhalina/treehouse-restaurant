@@ -1,195 +1,437 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { motion } from "framer-motion";
+import {
+  User,
+  Phone,
+  Mail,
+  CalendarDays,
+  Clock,
+  Users,
+  MessageSquare,
+  PartyPopper,
+  IndianRupee,
+} from "lucide-react";
+
+const WHATSAPP_NUMBER = "918876951989";
 
 export default function EventBookingPage() {
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    const name = formData.get("name");
-    const phone = formData.get("phone");
-    const email = formData.get("email");
-    const eventType = formData.get("eventType");
-    const date = formData.get("date");
-    const time = formData.get("time");
-    const guests = formData.get("guests");
-    const budget = formData.get("budget");
-    const message = formData.get("message");
-
-    const whatsappNumber = "918876951989";
+    const name = String(formData.get("name") || "");
+    const phone = String(formData.get("phone") || "");
+    const email = String(formData.get("email") || "");
+    const eventType = String(formData.get("eventType") || "");
+    const date = String(formData.get("date") || "");
+    const time = String(formData.get("time") || "");
+    const guests = String(formData.get("guests") || "");
+    const budget = String(formData.get("budget") || "");
+    const message = String(formData.get("message") || "");
 
     const whatsappMessage = `
-🌳 *TREE HOUSE - EVENT BOOKING*
+🌳 TREE HOUSE RESTAURANT
 
-👤 *Name:* ${name}
-📞 *Phone:* ${phone}
-📧 *Email:* ${email}
+🎉 EVENT BOOKING REQUEST
 
-🎉 *Event Type:* ${eventType}
-📅 *Date:* ${date}
-⏰ *Time:* ${time}
-👥 *Guests:* ${guests}
-💰 *Budget:* ${budget || "Not specified"}
+👤 Name: ${name}
+📞 Phone: ${phone}
+📧 Email: ${email}
 
-📝 *Event Details:*
+🎊 Event Type: ${eventType}
+📅 Date: ${date}
+⏰ Time: ${time}
+👥 Number of Guests: ${guests}
+💰 Estimated Budget: ${budget || "Not specified"}
+
+📝 Event Details:
 ${message || "No additional details"}
 
 Please contact me regarding this event booking.
     `.trim();
 
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-      whatsappMessage
-    )}`;
+    const whatsappURL =
+      `https://wa.me/${WHATSAPP_NUMBER}?text=` +
+      encodeURIComponent(whatsappMessage);
 
     window.open(whatsappURL, "_blank");
 
-    setLoading(false);
     form.reset();
+    setLoading(false);
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#faf8f2] px-6 py-16 md:py-20">
+    <main className="min-h-screen bg-[#F7F4ED] px-5 py-16 md:px-8 md:py-20">
+      <div className="mx-auto max-w-4xl">
 
-      {/* Soft decorative background */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-
-        <div className="absolute -top-32 -left-32 h-80 w-80 rounded-full bg-yellow-200/30 blur-3xl" />
-
-        <div className="absolute top-1/3 -right-40 h-96 w-96 rounded-full bg-amber-100/50 blur-3xl" />
-
-        <div className="absolute -bottom-40 left-1/3 h-96 w-96 rounded-full bg-yellow-100/40 blur-3xl" />
-
-        {/* Small decorative circles */}
-        <div className="absolute top-24 left-[8%] h-3 w-3 rounded-full bg-yellow-400/50" />
-        <div className="absolute top-40 right-[12%] h-4 w-4 rounded-full bg-yellow-500/30" />
-        <div className="absolute bottom-24 left-[12%] h-4 w-4 rounded-full bg-amber-400/30" />
-
-      </div>
-
-      {/* Main Card */}
-      <div className="relative z-10 mx-auto max-w-4xl rounded-[32px] border border-yellow-100/80 bg-white/90 p-8 shadow-[0_25px_70px_rgba(120,90,20,0.12)] backdrop-blur-sm md:p-12">
-
-        {/* Heading */}
-        <div className="text-center">
-
-          <h1 className="text-5xl font-bold text-[#111827] md:text-6xl">
-            Book an Event
-          </h1>
-
-          <p className="mt-5 text-lg text-slate-500">
-            Tell us about your event and contact us through WhatsApp.
-          </p>
-
-        </div>
-
-        {/* Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="mt-12 grid gap-5 md:grid-cols-2"
+        {/* Main Green Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="
+            overflow-hidden
+            rounded-[28px]
+            bg-[#17352A]
+            border border-[#C79A32]/30
+            shadow-[0_25px_70px_rgba(23,53,42,0.18)]
+          "
         >
 
-          <input
-            name="name"
-            type="text"
-            placeholder="Full Name"
-            required
-            className="rounded-xl border border-slate-200 bg-white px-5 py-4 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-100"
-          />
+          {/* Header */}
+          <div className="px-7 pt-10 pb-8 text-center md:px-12 md:pt-14">
 
-          <input
-            name="phone"
-            type="tel"
-            placeholder="Phone Number"
-            required
-            className="rounded-xl border border-slate-200 bg-white px-5 py-4 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-100"
-          />
+            <p className="text-[#E2BD62] text-xs md:text-sm font-semibold uppercase tracking-[0.28em]">
+              CELEBRATE AT TREE HOUSE
+            </p>
 
-          <input
-            name="email"
-            type="email"
-            placeholder="Email Address"
-            required
-            className="rounded-xl border border-slate-200 bg-white px-5 py-4 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-100"
-          />
+            <h1 className="mt-4 text-4xl md:text-5xl font-bold text-white">
+              Book an Event
+            </h1>
 
-          <select
-            name="eventType"
-            required
-            defaultValue=""
-            className="rounded-xl border border-slate-200 bg-white px-5 py-4 text-slate-800 outline-none transition focus:border-yellow-500 focus:ring-2 focus:ring-yellow-100"
-          >
-            <option value="" disabled>
-              Select Event Type
-            </option>
-            <option value="Birthday Celebration">
-              Birthday Celebration
-            </option>
-            <option value="Wedding Reception">
-              Wedding Reception
-            </option>
-            <option value="Private Dining">
-              Private Dining
-            </option>
-            <option value="Corporate Event">
-              Corporate Event
-            </option>
-            <option value="Other">
-              Other
-            </option>
-          </select>
+            <div className="mx-auto mt-5 h-[2px] w-14 bg-[#C79A32]" />
 
-          <input
-            name="date"
-            type="date"
-            required
-            className="rounded-xl border border-slate-200 bg-white px-5 py-4 text-slate-800 outline-none transition focus:border-yellow-500 focus:ring-2 focus:ring-yellow-100"
-          />
+            <p className="mx-auto mt-5 max-w-2xl text-[#C5CEC8] text-base md:text-lg leading-7">
+              Tell us about your event and let us help create
+              a memorable celebration at TREE HOUSE.
+            </p>
 
-          <input
-            name="time"
-            type="time"
-            required
-            className="rounded-xl border border-slate-200 bg-white px-5 py-4 text-slate-800 outline-none transition focus:border-yellow-500 focus:ring-2 focus:ring-yellow-100"
-          />
+          </div>
 
-          <input
-            name="guests"
-            type="number"
-            min="1"
-            placeholder="Number of Guests"
-            required
-            className="rounded-xl border border-slate-200 bg-white px-5 py-4 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-100"
-          />
+          {/* Form */}
+          <div className="px-7 pb-10 md:px-12 md:pb-14">
 
-          <input
-            name="budget"
-            type="text"
-            placeholder="Estimated Budget"
-            className="rounded-xl border border-slate-200 bg-white px-5 py-4 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-100"
-          />
+            <form
+              onSubmit={handleSubmit}
+              className="grid gap-5 md:grid-cols-2"
+            >
 
-          <textarea
-            name="message"
-            rows={5}
-            placeholder="Tell us about your event..."
-            className="md:col-span-2 rounded-xl border border-slate-200 bg-white px-5 py-4 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-100"
-          />
+              {/* Full Name */}
+              <div className="relative">
+                <User
+                  size={19}
+                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                />
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="md:col-span-2 rounded-xl bg-yellow-500 py-4 font-bold text-black shadow-lg shadow-yellow-500/20 transition hover:bg-yellow-400 hover:shadow-yellow-500/30 disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            {loading ? "Opening WhatsApp..." : "Book Event on WhatsApp"}
-          </button>
+                <input
+                  name="name"
+                  type="text"
+                  placeholder="Full Name"
+                  required
+                  className="
+                    w-full rounded-xl
+                    border border-white/15
+                    bg-[#204437]
+                    px-5 py-4 pl-12
+                    text-white
+                    outline-none
+                    placeholder:text-[#AEBBB4]
+                    transition
+                    focus:border-[#C79A32]
+                    focus:ring-2
+                    focus:ring-[#C79A32]/20
+                  "
+                />
+              </div>
 
-        </form>
+              {/* Phone */}
+              <div className="relative">
+                <Phone
+                  size={19}
+                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                />
+
+                <input
+                  name="phone"
+                  type="tel"
+                  placeholder="Phone Number"
+                  required
+                  className="
+                    w-full rounded-xl
+                    border border-white/15
+                    bg-[#204437]
+                    px-5 py-4 pl-12
+                    text-white
+                    outline-none
+                    placeholder:text-[#AEBBB4]
+                    transition
+                    focus:border-[#C79A32]
+                    focus:ring-2
+                    focus:ring-[#C79A32]/20
+                  "
+                />
+              </div>
+
+              {/* Email */}
+              <div className="relative">
+                <Mail
+                  size={19}
+                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                />
+
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Email Address"
+                  required
+                  className="
+                    w-full rounded-xl
+                    border border-white/15
+                    bg-[#204437]
+                    px-5 py-4 pl-12
+                    text-white
+                    outline-none
+                    placeholder:text-[#AEBBB4]
+                    transition
+                    focus:border-[#C79A32]
+                    focus:ring-2
+                    focus:ring-[#C79A32]/20
+                  "
+                />
+              </div>
+
+              {/* Event Type */}
+              <div className="relative">
+                <PartyPopper
+                  size={19}
+                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                />
+
+                <select
+                  name="eventType"
+                  required
+                  defaultValue=""
+                  className="
+                    w-full appearance-none rounded-xl
+                    border border-white/15
+                    bg-[#204437]
+                    px-5 py-4 pl-12
+                    text-white
+                    outline-none
+                    transition
+                    focus:border-[#C79A32]
+                    focus:ring-2
+                    focus:ring-[#C79A32]/20
+                  "
+                >
+                  <option value="" disabled className="bg-[#204437]">
+                    Select Event Type
+                  </option>
+
+                  <option
+                    value="Birthday Celebration"
+                    className="bg-[#204437]"
+                  >
+                    Birthday Celebration
+                  </option>
+
+                  <option
+                    value="Wedding Reception"
+                    className="bg-[#204437]"
+                  >
+                    Wedding Reception
+                  </option>
+
+                  <option
+                    value="Private Dining"
+                    className="bg-[#204437]"
+                  >
+                    Private Dining
+                  </option>
+
+                  <option
+                    value="Corporate Event"
+                    className="bg-[#204437]"
+                  >
+                    Corporate Event
+                  </option>
+
+                  <option value="Other" className="bg-[#204437]">
+                    Other
+                  </option>
+                </select>
+              </div>
+
+              {/* Date */}
+              <div className="relative">
+                <CalendarDays
+                  size={19}
+                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                />
+
+                <input
+                  name="date"
+                  type="date"
+                  required
+                  className="
+                    w-full rounded-xl
+                    border border-white/15
+                    bg-[#204437]
+                    px-5 py-4 pl-12
+                    text-white
+                    outline-none
+                    transition
+                    focus:border-[#C79A32]
+                    focus:ring-2
+                    focus:ring-[#C79A32]/20
+                  "
+                />
+              </div>
+
+              {/* Time */}
+              <div className="relative">
+                <Clock
+                  size={19}
+                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                />
+
+                <input
+                  name="time"
+                  type="time"
+                  required
+                  className="
+                    w-full rounded-xl
+                    border border-white/15
+                    bg-[#204437]
+                    px-5 py-4 pl-12
+                    text-white
+                    outline-none
+                    transition
+                    focus:border-[#C79A32]
+                    focus:ring-2
+                    focus:ring-[#C79A32]/20
+                  "
+                />
+              </div>
+
+              {/* Guests */}
+              <div className="relative">
+                <Users
+                  size={19}
+                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                />
+
+                <input
+                  name="guests"
+                  type="number"
+                  min="1"
+                  placeholder="Number of Guests"
+                  required
+                  className="
+                    w-full rounded-xl
+                    border border-white/15
+                    bg-[#204437]
+                    px-5 py-4 pl-12
+                    text-white
+                    outline-none
+                    placeholder:text-[#AEBBB4]
+                    transition
+                    focus:border-[#C79A32]
+                    focus:ring-2
+                    focus:ring-[#C79A32]/20
+                  "
+                />
+              </div>
+
+              {/* Budget */}
+              <div className="relative">
+                <IndianRupee
+                  size={19}
+                  className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                />
+
+                <input
+                  name="budget"
+                  type="text"
+                  placeholder="Estimated Budget"
+                  className="
+                    w-full rounded-xl
+                    border border-white/15
+                    bg-[#204437]
+                    px-5 py-4 pl-12
+                    text-white
+                    outline-none
+                    placeholder:text-[#AEBBB4]
+                    transition
+                    focus:border-[#C79A32]
+                    focus:ring-2
+                    focus:ring-[#C79A32]/20
+                  "
+                />
+              </div>
+
+              {/* Event Details */}
+              <div className="relative md:col-span-2">
+                <MessageSquare
+                  size={19}
+                  className="absolute left-5 top-5 text-[#E2BD62]"
+                />
+
+                <textarea
+                  name="message"
+                  rows={5}
+                  placeholder="Tell us about your event..."
+                  className="
+                    w-full rounded-xl
+                    border border-white/15
+                    bg-[#204437]
+                    px-5 py-4 pl-12
+                    text-white
+                    outline-none
+                    resize-none
+                    placeholder:text-[#AEBBB4]
+                    transition
+                    focus:border-[#C79A32]
+                    focus:ring-2
+                    focus:ring-[#C79A32]/20
+                  "
+                />
+              </div>
+
+              {/* Button */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="
+                  md:col-span-2
+                  mt-2
+                  w-full
+                  rounded-xl
+                  bg-[#C79A32]
+                  py-4
+                  text-[#17352A]
+                  font-bold
+                  text-base
+                  transition
+                  hover:bg-[#E2BD62]
+                  hover:shadow-lg
+                  hover:shadow-[#C79A32]/20
+                  disabled:cursor-not-allowed
+                  disabled:opacity-60
+                "
+              >
+                {loading
+                  ? "Opening WhatsApp..."
+                  : "Book Event on WhatsApp"}
+              </button>
+
+            </form>
+
+          </div>
+
+        </motion.div>
+
+        {/* Bottom Text */}
+        <p className="mt-8 text-center text-sm text-[#66706A]">
+          Birthdays • Weddings • Corporate Events • Private Dining
+        </p>
 
       </div>
     </main>

@@ -1,171 +1,291 @@
 "use client";
 
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  MessageCircle,
+} from "lucide-react";
 
 export default function Contact() {
-  const phoneNumber = "08876951989";
-  const whatsappNumber = "918876951989";
-
   return (
     <section
       id="contact"
-      className="bg-gray-950 text-white py-24 px-6"
+      className="bg-[#17352A] py-20 md:py-24 px-6 scroll-mt-20"
     >
       <div className="max-w-7xl mx-auto">
 
-        {/* Heading */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold">
-            Contact Us
+        {/* ================================================= */}
+        {/* HEADING */}
+        {/* ================================================= */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-14"
+        >
+          <p className="text-[#E2BD62] uppercase tracking-[0.25em] text-sm font-semibold mb-4">
+            Get In Touch
+          </p>
+
+          <h2 className="text-4xl md:text-5xl font-bold text-white">
+            Visit TREE HOUSE
           </h2>
 
-          <p className="text-gray-400 mt-4">
-            We'd love to host your next celebration.
+          <div className="w-14 h-[2px] bg-[#C79A32] mx-auto mt-5 mb-5" />
+
+          <p className="text-[#C5CEC8] text-base md:text-lg leading-7">
+            Whether you're planning a family gathering, celebration,
+            special dinner or simply looking for a memorable place to dine,
+            we'd love to welcome you.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        {/* ================================================= */}
+        {/* CONTACT CONTENT */}
+        {/* ================================================= */}
 
-          {/* Contact Details */}
-          <div className="space-y-8">
+        <div className="grid lg:grid-cols-2 gap-10 items-stretch">
 
-            {/* Address */}
-            <div className="flex gap-5">
-              <MapPin
-                className="text-yellow-500 flex-shrink-0"
-                size={32}
-              />
+          {/* ================================================= */}
+          {/* CONTACT INFORMATION */}
+          {/* ================================================= */}
 
-              <div>
-                <h3 className="text-2xl font-semibold">
-                  Address
-                </h3>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-[#204437] rounded-3xl p-8 md:p-10 border border-white/10"
+          >
+            <h3 className="text-2xl font-semibold text-white mb-8">
+              Contact Information
+            </h3>
 
-                <p className="text-gray-400 mt-2 leading-7">
-                  TREE HOUSE Resort & Restaurant,
-                  <br />
-                  NH-37, Jagiroad,
-                  <br />
-                  Pachim Nagaon, Assam
-                  <br />
-                  782410
-                </p>
+            <div className="space-y-7">
+
+              {/* ================================================= */}
+              {/* ADDRESS */}
+              {/* ================================================= */}
+
+              <div className="flex gap-4">
+
+                <div className="shrink-0 w-11 h-11 rounded-full bg-[#C79A32]/15 flex items-center justify-center">
+                  <MapPin
+                    size={20}
+                    className="text-[#E2BD62]"
+                  />
+                </div>
+
+                <div>
+                  <p className="text-sm text-[#AEBBB4] mb-1">
+                    Address
+                  </p>
+
+                  <p className="text-white leading-6">
+                    NH-37, Jagiroad
+                    <br />
+                    Assam, India
+                  </p>
+                </div>
+
               </div>
-            </div>
 
-            {/* Phone */}
-            <div className="flex gap-5">
-              <Phone
-                className="text-yellow-500 flex-shrink-0"
-                size={32}
-              />
+              {/* ================================================= */}
+              {/* PHONE */}
+              {/* ================================================= */}
 
-              <div>
-                <h3 className="text-2xl font-semibold">
-                  Phone
-                </h3>
+              <div className="flex gap-4">
 
-                <a
-                  href={`tel:${phoneNumber}`}
-                  className="text-gray-400 hover:text-yellow-400 transition"
-                >
-                  088769 51989
-                </a>
+                <div className="shrink-0 w-11 h-11 rounded-full bg-[#C79A32]/15 flex items-center justify-center">
+                  <Phone
+                    size={20}
+                    className="text-[#E2BD62]"
+                  />
+                </div>
+
+                <div>
+                  <p className="text-sm text-[#AEBBB4] mb-1">
+                    Phone
+                  </p>
+
+                  <a
+                    href="tel:+918876951989"
+                    className="text-white hover:text-[#E2BD62] transition"
+                  >
+                    +91 88769 51989
+                  </a>
+                </div>
+
               </div>
-            </div>
 
-            {/* Email */}
-            <div className="flex gap-5">
-              <Mail
-                className="text-yellow-500 flex-shrink-0"
-                size={32}
-              />
+              {/* ================================================= */}
+              {/* EMAIL */}
+              {/* ================================================= */}
 
-              <div>
-                <h3 className="text-2xl font-semibold">
-                  Email
-                </h3>
+              <div className="flex gap-4">
 
-                <a
-                  href="mailto:resorttreehouse4@gmail.com"
-                  className="text-gray-400 hover:text-yellow-400 transition"
-                >
-                  resorttreehouse4@gmail.com
-                </a>
+                <div className="shrink-0 w-11 h-11 rounded-full bg-[#C79A32]/15 flex items-center justify-center">
+                  <Mail
+                    size={20}
+                    className="text-[#E2BD62]"
+                  />
+                </div>
+
+                <div className="min-w-0">
+
+                  <p className="text-sm text-[#AEBBB4] mb-1">
+                    Email
+                  </p>
+
+                  <a
+                    href="mailto:resorttreehouse4@gmail.com"
+                    className="text-white hover:text-[#E2BD62] transition break-all"
+                  >
+                    resorttreehouse4@gmail.com
+                  </a>
+
+                </div>
+
               </div>
-            </div>
-            {/* Opening Hours */}
-            <div className="flex gap-5">
-              <Clock
-                className="text-yellow-500 flex-shrink-0"
-                size={32}
-              />
 
-              <div>
-                <h3 className="text-2xl font-semibold">
-                  Opening Hours
-                </h3>
+              {/* ================================================= */}
+              {/* OPENING HOURS */}
+              {/* ================================================= */}
 
-                <p className="text-gray-400 mt-2 leading-7">
-                  Monday – Sunday
-                  <br />
-                  10:00 AM – 10:00 PM
-                </p>
+              <div className="flex gap-4">
+
+                <div className="shrink-0 w-11 h-11 rounded-full bg-[#C79A32]/15 flex items-center justify-center">
+                  <Clock
+                    size={20}
+                    className="text-[#E2BD62]"
+                  />
+                </div>
+
+                <div>
+
+                  <p className="text-sm text-[#AEBBB4] mb-1">
+                    Opening Hours
+                  </p>
+
+                  <p className="text-white leading-6">
+                    Open daily
+                    <br />
+                    Please contact us for current timings
+                  </p>
+
+                </div>
+
               </div>
-            </div>
-
-            {/* Buttons */}
-            <div className="flex flex-wrap gap-4 pt-4">
-
-              {/* WhatsApp */}
-              <a
-                href={`https://wa.me/${whatsappNumber}?text=Hello%20TREE%20HOUSE%20Restaurant,%20I%20would%20like%20to%20make%20a%20reservation.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-full font-semibold transition"
-              >
-                WhatsApp
-              </a>
-
-              {/* Call */}
-              <a
-                href={`tel:${phoneNumber}`}
-                className="bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-3 rounded-full font-semibold transition"
-              >
-                Call Now
-              </a>
-
-              {/* Directions */}
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=Tree+House+Resort+%26+Restaurant+Jagiroad+Assam"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black px-6 py-3 rounded-full font-semibold transition"
-              >
-                Get Directions
-              </a>
 
             </div>
 
-          </div>
+            {/* ================================================= */}
+            {/* WHATSAPP */}
+            {/* ================================================= */}
 
-          {/* Google Map */}
-          <div className="rounded-3xl overflow-hidden shadow-xl min-h-[500px]">
+            <a
+              href="https://wa.me/918876951989"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="
+                mt-10
+                inline-flex
+                items-center
+                justify-center
+                gap-2
+                w-full
+                rounded-full
+                bg-[#C79A32]
+                hover:bg-[#D6AA45]
+                text-[#17352A]
+                font-semibold
+                py-3.5
+                transition
+              "
+            >
+              <MessageCircle size={19} />
+
+              Contact on WhatsApp
+            </a>
+
+          </motion.div>
+
+          {/* ================================================= */}
+          {/* GOOGLE MAP */}
+          {/* ================================================= */}
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="
+              relative
+              min-h-[420px]
+              rounded-3xl
+              overflow-hidden
+              bg-[#204437]
+              border
+              border-white/10
+            "
+          >
 
             <iframe
-              src="https://www.google.com/maps?q=Tree+House+Resort+%26+Restaurant,+Jagiroad,+Assam&output=embed"
+              src="https://www.google.com/maps?q=Tree+House+Jagiroad+Assam&output=embed"
               width="100%"
-              height="500"
+              height="100%"
+              style={{
+                border: 0,
+                minHeight: "420px",
+              }}
               loading="lazy"
               allowFullScreen
               referrerPolicy="no-referrer-when-downgrade"
-              className="border-0"
-              title="TREE HOUSE Resort & Restaurant Location"
+              title="TREE HOUSE Jagiroad Google Map"
+              className="
+                absolute
+                inset-0
+                w-full
+                h-full
+              "
             />
 
-          </div>
+          </motion.div>
 
         </div>
+
+        {/* ================================================= */}
+        {/* BOTTOM TAGLINE */}
+        {/* ================================================= */}
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="
+            text-center
+            mt-16
+            pt-8
+            border-t
+            border-white/10
+          "
+        >
+
+          <p className="text-[#E2BD62] text-sm uppercase tracking-[0.25em]">
+            TREE HOUSE, JAGIROAD
+          </p>
+
+          <p className="text-white text-xl md:text-2xl font-medium mt-3">
+            Your Celebration. Our Hospitality.
+          </p>
+
+        </motion.div>
 
       </div>
     </section>

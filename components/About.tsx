@@ -1,90 +1,192 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle } from "lucide-react";
+import { Leaf, UtensilsCrossed, Heart, Baby} from "lucide-react";
+
+const highlights = [
+  {
+    icon: Leaf,
+    title: "A Relaxed Setting",
+    text: "A welcoming space designed for dining, gathering and enjoying meaningful moments.",
+  },
+  {
+    icon: UtensilsCrossed,
+    title: "Good Food",
+    text: "A diverse selection of dishes prepared to bring together familiar favourites and new flavours.",
+  },
+  {
+    icon: Heart,
+    title: "Warm Hospitality",
+    text: "We believe every guest should feel comfortable, welcomed and cared for.",
+  },
+  {
+  icon: Baby,
+  title: "Children's Playground",
+  text: "A fun and welcoming play area where children can enjoy themselves while families relax and dine.",
+},
+];
 
 export default function About() {
-  const features = [
-    "Fresh & Delicious Food",
-    "Wedding Reception Venue",
-    "Birthday Party Celebration",
-    "Private Dining Cottages",
-    "Family Friendly Environment",
-  ];
-
   return (
     <section
       id="about"
-      className="bg-white py-24 px-6"
+      className="bg-[#17352A] py-20 md:py-24 px-6 scroll-mt-20"
     >
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-center">
+      <div className="max-w-7xl mx-auto">
 
-        {/* IMAGE */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-        >
-          <img
-            src="/images/about.jpg"
-            alt="TREE HOUSE Restaurant"
-            className="w-full h-[430px] object-cover rounded-3xl shadow-2xl"
-          />
-        </motion.div>
+        {/* ================================================= */}
+        {/* MAIN CONTENT */}
+        {/* ================================================= */}
 
-        {/* CONTENT */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-        >
-          {/* Small Heading */}
-          <p className="text-yellow-600 font-bold tracking-[0.2em] uppercase mb-4">
-            About Us
-          </p>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-          {/* MAIN HEADING */}
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            Welcome to TREE HOUSE
-          </h2>
+          {/* ================================================= */}
+          {/* VIDEO */}
+          {/* ================================================= */}
 
-          {/* DESCRIPTION */}
-          <p className="text-gray-600 text-lg leading-8 mb-8">
-            TREE HOUSE is more than just a restaurant. We offer delicious food,
-            a peaceful atmosphere, private dining cottages, birthday
-            celebrations, wedding receptions, and family gatherings. Whether
-            you're here for a meal or a special occasion, we make every visit
-            memorable.
-          </p>
-
-          {/* FEATURES */}
-          <div className="space-y-5 mb-10">
-            {features.map((feature) => (
-              <div
-                key={feature}
-                className="flex items-center gap-3"
-              >
-                <CheckCircle
-                  size={25}
-                  className="text-green-500 flex-shrink-0"
-                />
-
-                <span className="text-gray-600 text-lg font-medium">
-                  {feature}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          {/* BUTTON */}
-          <a
-            href="#contact"
-            className="inline-block bg-yellow-500 hover:bg-yellow-600 text-black px-8 py-4 rounded-full font-semibold transition"
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="relative flex justify-center"
           >
-            Learn More
-          </a>
+            <div className="w-full max-w-[520px] overflow-hidden rounded-2xl shadow-2xl bg-black">
+              <video
+                src="/images/about-tree-house.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                controls={false}
+                className="w-full h-auto block"
+              />
+            </div>
+          </motion.div>
+
+          {/* ================================================= */}
+          {/* ABOUT TEXT */}
+          {/* ================================================= */}
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+
+            {/* Small Heading */}
+
+            <p className="text-[#E2BD62] uppercase tracking-[0.25em] text-sm font-semibold mb-4">
+              About TREE HOUSE
+            </p>
+
+            {/* Main Heading */}
+
+            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+              A Place to Eat,
+              <br />
+              Gather & Celebrate
+            </h2>
+
+            {/* Gold Divider */}
+
+            <div className="w-14 h-[2px] bg-[#C79A32] mt-6 mb-7" />
+
+            {/* First Paragraph */}
+
+            <p className="text-[#C5CEC8] text-base md:text-lg leading-8 mb-5">
+              TREE HOUSE is a destination in Jagiroad where food,
+              celebrations and memorable moments come together.
+            </p>
+
+            {/* Second Paragraph */}
+
+            <p className="text-[#AEBBB4] leading-7 mb-8">
+              Whether you're joining us for a relaxed meal, spending time
+              with family and friends or planning a special occasion,
+              our aim is to create a comfortable and welcoming experience
+              for every guest.
+            </p>
+
+            {/* ================================================= */}
+            {/* HIGHLIGHTS */}
+            {/* ================================================= */}
+
+            <div className="space-y-5">
+
+              {highlights.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <div
+                    key={item.title}
+                    className="flex gap-4"
+                  >
+
+                    {/* Icon */}
+
+                    <div
+                      className="
+                        shrink-0
+                        w-11
+                        h-11
+                        rounded-full
+                        bg-[#C79A32]/15
+                        flex
+                        items-center
+                        justify-center
+                      "
+                    >
+                      <Icon
+                        size={21}
+                        className="text-[#E2BD62]"
+                      />
+                    </div>
+
+                    {/* Text */}
+
+                    <div>
+                      <h3 className="text-white font-semibold text-lg">
+                        {item.title}
+                      </h3>
+
+                      <p className="text-[#AEBBB4] text-sm leading-6 mt-1">
+                        {item.text}
+                      </p>
+                    </div>
+
+                  </div>
+                );
+              })}
+
+            </div>
+
+          </motion.div>
+
+        </div>
+
+        {/* ================================================= */}
+        {/* BOTTOM STATEMENT */}
+        {/* ================================================= */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-20 pt-10 border-t border-white/10 text-center"
+        >
+
+          <p className="text-[#E2BD62] uppercase tracking-[0.2em] text-xs font-semibold">
+            TREE HOUSE, JAGIROAD
+          </p>
+
+          <p className="text-white text-xl md:text-2xl font-medium mt-3">
+            Good Food. Warm Hospitality. Memorable Moments.
+          </p>
+
         </motion.div>
 
       </div>
