@@ -74,8 +74,8 @@ Please contact me regarding this event booking.
       <Navbar />
       <PageCloseButton />
 
-      <main className="min-h-screen bg-[#F7F4ED] px-5 py-16 md:px-8 md:py-20">
-        <div className="mx-auto max-w-4xl">
+      <main className="min-h-screen bg-[#F7F4ED] px-4 py-10 sm:px-5 sm:py-14 md:px-8 md:py-20">
+        <div className="mx-auto w-full max-w-4xl min-w-0">
 
           {/* Main Green Card */}
           <motion.div
@@ -83,28 +83,31 @@ Please contact me regarding this event booking.
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             className="
+              w-full
+              min-w-0
               overflow-hidden
-              rounded-[28px]
+              rounded-[24px]
+              md:rounded-[28px]
               bg-[#17352A]
               border border-[#C79A32]/30
-              shadow-[0_25px_70px_rgba(23,53,42,0.18)]
+              shadow-[0_20px_60px_rgba(23,53,42,0.18)]
             "
           >
 
             {/* Header */}
-            <div className="px-7 pt-10 pb-8 text-center md:px-12 md:pt-14">
+            <div className="px-5 pt-8 pb-6 text-center sm:px-7 md:px-12 md:pt-14 md:pb-8">
 
-              <p className="text-[#E2BD62] text-xs md:text-sm font-semibold uppercase tracking-[0.28em]">
-                CELEBRATE AT TREE HOUSE
+              <p className="text-[#E2BD62] text-[11px] md:text-sm font-semibold uppercase tracking-[0.25em]">
+                Celebrate at TREE HOUSE
               </p>
 
-              <h1 className="mt-4 text-4xl md:text-5xl font-bold text-white">
+              <h1 className="mt-3 text-3xl sm:text-4xl md:mt-4 md:text-5xl font-bold text-white">
                 Book an Event
               </h1>
 
-              <div className="mx-auto mt-5 h-[2px] w-14 bg-[#C79A32]" />
+              <div className="mx-auto mt-4 h-[2px] w-12 bg-[#C79A32] md:mt-5 md:w-14" />
 
-              <p className="mx-auto mt-5 max-w-2xl text-[#C5CEC8] text-base md:text-lg leading-7">
+              <p className="mx-auto mt-4 max-w-2xl text-sm sm:text-base md:mt-5 md:text-lg leading-6 md:leading-7 text-[#C5CEC8]">
                 Tell us about your event and let us help create
                 a memorable celebration at TREE HOUSE.
               </p>
@@ -112,18 +115,25 @@ Please contact me regarding this event booking.
             </div>
 
             {/* Form */}
-            <div className="px-7 pb-10 md:px-12 md:pb-14">
+            <div className="min-w-0 px-5 pb-7 sm:px-7 md:px-12 md:pb-14">
 
               <form
                 onSubmit={handleSubmit}
-                className="grid gap-5 md:grid-cols-2"
+                className="grid min-w-0 gap-4 md:grid-cols-2 md:gap-5"
               >
 
                 {/* Full Name */}
-                <div className="relative">
+                <div className="relative min-w-0 w-full">
                   <User
                     size={19}
-                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                    className="
+                      absolute
+                      left-4
+                      top-1/2
+                      z-10
+                      -translate-y-1/2
+                      text-[#E2BD62]
+                    "
                   />
 
                   <input
@@ -132,10 +142,20 @@ Please contact me regarding this event booking.
                     placeholder="Full Name"
                     required
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-4
+                      py-3.5
+                      pl-11
+                      text-sm
+                      sm:text-base
                       text-white
                       outline-none
                       placeholder:text-[#AEBBB4]
@@ -148,10 +168,17 @@ Please contact me regarding this event booking.
                 </div>
 
                 {/* Phone */}
-                <div className="relative">
+                <div className="relative min-w-0 w-full">
                   <Phone
                     size={19}
-                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                    className="
+                      absolute
+                      left-4
+                      top-1/2
+                      z-10
+                      -translate-y-1/2
+                      text-[#E2BD62]
+                    "
                   />
 
                   <input
@@ -160,10 +187,20 @@ Please contact me regarding this event booking.
                     placeholder="Phone Number"
                     required
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-4
+                      py-3.5
+                      pl-11
+                      text-sm
+                      sm:text-base
                       text-white
                       outline-none
                       placeholder:text-[#AEBBB4]
@@ -176,10 +213,17 @@ Please contact me regarding this event booking.
                 </div>
 
                 {/* Email */}
-                <div className="relative">
+                <div className="relative min-w-0 w-full">
                   <Mail
                     size={19}
-                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                    className="
+                      absolute
+                      left-4
+                      top-1/2
+                      z-10
+                      -translate-y-1/2
+                      text-[#E2BD62]
+                    "
                   />
 
                   <input
@@ -188,10 +232,20 @@ Please contact me regarding this event booking.
                     placeholder="Email Address"
                     required
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-4
+                      py-3.5
+                      pl-11
+                      text-sm
+                      sm:text-base
                       text-white
                       outline-none
                       placeholder:text-[#AEBBB4]
@@ -204,10 +258,17 @@ Please contact me regarding this event booking.
                 </div>
 
                 {/* Event Type */}
-                <div className="relative">
+                <div className="relative min-w-0 w-full">
                   <PartyPopper
                     size={19}
-                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                    className="
+                      absolute
+                      left-4
+                      top-1/2
+                      z-10
+                      -translate-y-1/2
+                      text-[#E2BD62]
+                    "
                   />
 
                   <select
@@ -215,10 +276,21 @@ Please contact me regarding this event booking.
                     required
                     defaultValue=""
                     className="
-                      w-full appearance-none rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      appearance-none
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-4
+                      py-3.5
+                      pl-11
+                      text-sm
+                      sm:text-base
                       text-white
                       outline-none
                       transition
@@ -227,7 +299,11 @@ Please contact me regarding this event booking.
                       focus:ring-[#C79A32]/20
                     "
                   >
-                    <option value="" disabled className="bg-[#204437]">
+                    <option
+                      value=""
+                      disabled
+                      className="bg-[#204437]"
+                    >
                       Select Event Type
                     </option>
 
@@ -259,17 +335,31 @@ Please contact me regarding this event booking.
                       Corporate Event
                     </option>
 
-                    <option value="Other" className="bg-[#204437]">
+                    <option
+                      value="Other"
+                      className="bg-[#204437]"
+                    >
                       Other
                     </option>
                   </select>
                 </div>
 
-                {/* Date */}
-                <div className="relative">
+                {/* ================================================= */}
+                {/* DATE — MOBILE OVERFLOW FIX */}
+                {/* ================================================= */}
+
+                <div className="relative min-w-0 w-full overflow-hidden">
                   <CalendarDays
                     size={19}
-                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                    className="
+                      pointer-events-none
+                      absolute
+                      left-4
+                      top-1/2
+                      z-10
+                      -translate-y-1/2
+                      text-[#E2BD62]
+                    "
                   />
 
                   <input
@@ -277,10 +367,22 @@ Please contact me regarding this event booking.
                     type="date"
                     required
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      appearance-none
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-3
+                      py-3.5
+                      pl-11
+                      pr-2
+                      text-[14px]
+                      sm:text-base
                       text-white
                       outline-none
                       transition
@@ -291,11 +393,22 @@ Please contact me regarding this event booking.
                   />
                 </div>
 
-                {/* Time */}
-                <div className="relative">
+                {/* ================================================= */}
+                {/* TIME — MOBILE OVERFLOW FIX */}
+                {/* ================================================= */}
+
+                <div className="relative min-w-0 w-full overflow-hidden">
                   <Clock
                     size={19}
-                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                    className="
+                      pointer-events-none
+                      absolute
+                      left-4
+                      top-1/2
+                      z-10
+                      -translate-y-1/2
+                      text-[#E2BD62]
+                    "
                   />
 
                   <input
@@ -303,10 +416,22 @@ Please contact me regarding this event booking.
                     type="time"
                     required
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      appearance-none
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-3
+                      py-3.5
+                      pl-11
+                      pr-2
+                      text-[14px]
+                      sm:text-base
                       text-white
                       outline-none
                       transition
@@ -318,10 +443,17 @@ Please contact me regarding this event booking.
                 </div>
 
                 {/* Guests */}
-                <div className="relative">
+                <div className="relative min-w-0 w-full">
                   <Users
                     size={19}
-                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                    className="
+                      absolute
+                      left-4
+                      top-1/2
+                      z-10
+                      -translate-y-1/2
+                      text-[#E2BD62]
+                    "
                   />
 
                   <input
@@ -331,10 +463,20 @@ Please contact me regarding this event booking.
                     placeholder="Number of Guests"
                     required
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-4
+                      py-3.5
+                      pl-11
+                      text-sm
+                      sm:text-base
                       text-white
                       outline-none
                       placeholder:text-[#AEBBB4]
@@ -347,10 +489,17 @@ Please contact me regarding this event booking.
                 </div>
 
                 {/* Budget */}
-                <div className="relative">
+                <div className="relative min-w-0 w-full">
                   <IndianRupee
                     size={19}
-                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                    className="
+                      absolute
+                      left-4
+                      top-1/2
+                      z-10
+                      -translate-y-1/2
+                      text-[#E2BD62]
+                    "
                   />
 
                   <input
@@ -358,10 +507,20 @@ Please contact me regarding this event booking.
                     type="text"
                     placeholder="Estimated Budget"
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-4
+                      py-3.5
+                      pl-11
+                      text-sm
+                      sm:text-base
                       text-white
                       outline-none
                       placeholder:text-[#AEBBB4]
@@ -374,24 +533,41 @@ Please contact me regarding this event booking.
                 </div>
 
                 {/* Event Details */}
-                <div className="relative md:col-span-2">
+                <div className="relative min-w-0 w-full md:col-span-2">
                   <MessageSquare
                     size={19}
-                    className="absolute left-5 top-5 text-[#E2BD62]"
+                    className="
+                      pointer-events-none
+                      absolute
+                      left-4
+                      top-4
+                      z-10
+                      text-[#E2BD62]
+                    "
                   />
 
                   <textarea
                     name="message"
-                    rows={5}
+                    rows={4}
                     placeholder="Tell us about your event..."
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      resize-none
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-4
+                      py-3.5
+                      pl-11
+                      text-sm
+                      sm:text-base
                       text-white
                       outline-none
-                      resize-none
                       placeholder:text-[#AEBBB4]
                       transition
                       focus:border-[#C79A32]
@@ -407,14 +583,17 @@ Please contact me regarding this event booking.
                   disabled={loading}
                   className="
                     md:col-span-2
-                    mt-2
+                    mt-1
                     w-full
+                    min-w-0
                     rounded-xl
                     bg-[#C79A32]
-                    py-4
+                    px-4
+                    py-3.5
+                    text-sm
+                    sm:text-base
                     text-[#17352A]
                     font-bold
-                    text-base
                     transition
                     hover:bg-[#E2BD62]
                     hover:shadow-lg
@@ -434,7 +613,7 @@ Please contact me regarding this event booking.
           </motion.div>
 
           {/* Bottom Text */}
-          <p className="mt-8 text-center text-sm text-[#66706A]">
+          <p className="mt-5 text-center text-xs sm:text-sm text-[#66706A]">
             Birthdays • Weddings • Corporate Events • Private Dining
           </p>
 

@@ -68,56 +68,74 @@ I would like to reserve a table at TREE HOUSE Restaurant.
       <Navbar />
       <PageCloseButton />
 
-      <main className="min-h-screen bg-[#F7F4ED] px-5 py-16 md:px-8 md:py-20">
-        <div className="mx-auto max-w-4xl">
+      <main className="min-h-screen bg-[#F7F4ED] px-4 py-10 sm:px-5 sm:py-14 md:px-8 md:py-20">
+        <div className="mx-auto w-full max-w-4xl min-w-0">
 
-          {/* Main Green Card */}
+          {/* MAIN GREEN CARD */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             className="
+              w-full
+              min-w-0
               overflow-hidden
-              rounded-[28px]
+              rounded-[24px]
+              md:rounded-[28px]
               bg-[#17352A]
               border border-[#C79A32]/30
-              shadow-[0_25px_70px_rgba(23,53,42,0.18)]
+              shadow-[0_20px_60px_rgba(23,53,42,0.18)]
             "
           >
 
-            {/* Header */}
-            <div className="px-7 pt-10 pb-8 text-center md:px-12 md:pt-14">
+            {/* HEADER */}
+            <div className="px-5 pt-8 pb-6 text-center sm:px-7 md:px-12 md:pt-14 md:pb-8">
 
-              <p className="text-[#E2BD62] text-xs md:text-sm font-semibold uppercase tracking-[0.28em]">
+              <p className="text-[#E2BD62] text-[11px] md:text-sm font-semibold uppercase tracking-[0.25em]">
                 TREE HOUSE RESTAURANT
               </p>
 
-              <h1 className="mt-4 text-4xl md:text-5xl font-bold text-white">
+              <h1 className="mt-3 text-3xl sm:text-4xl md:mt-4 md:text-5xl font-bold text-white">
                 Reserve a Table
               </h1>
 
-              <div className="mx-auto mt-5 h-[2px] w-14 bg-[#C79A32]" />
+              <div className="mx-auto mt-4 h-[2px] w-12 bg-[#C79A32] md:mt-5 md:w-14" />
 
-              <p className="mx-auto mt-5 max-w-2xl text-[#C5CEC8] text-base md:text-lg leading-7">
+              <p className="mx-auto mt-4 max-w-2xl text-sm sm:text-base md:mt-5 md:text-lg leading-6 md:leading-7 text-[#C5CEC8]">
                 Reserve your table at TREE HOUSE and enjoy good food,
                 warm hospitality and memorable moments.
               </p>
 
             </div>
 
-            {/* Form Area */}
-            <div className="px-7 pb-10 md:px-12 md:pb-14">
+            {/* FORM AREA */}
+            <div className="min-w-0 px-5 pb-7 sm:px-7 md:px-12 md:pb-14">
 
               <form
                 onSubmit={handleSubmit}
-                className="grid gap-5 md:grid-cols-2"
+                className="
+                  grid
+                  min-w-0
+                  gap-4
+                  md:grid-cols-2
+                  md:gap-5
+                "
               >
 
-                {/* Name */}
-                <div className="relative">
+                {/* NAME */}
+                <div className="relative min-w-0 w-full">
+
                   <User
                     size={19}
-                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                    className="
+                      pointer-events-none
+                      absolute
+                      left-4
+                      top-1/2
+                      z-10
+                      -translate-y-1/2
+                      text-[#E2BD62]
+                    "
                   />
 
                   <input
@@ -126,10 +144,20 @@ I would like to reserve a table at TREE HOUSE Restaurant.
                     placeholder="Full Name"
                     required
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-4
+                      py-3.5
+                      pl-11
+                      text-sm
+                      sm:text-base
                       text-white
                       outline-none
                       placeholder:text-[#AEBBB4]
@@ -139,13 +167,23 @@ I would like to reserve a table at TREE HOUSE Restaurant.
                       focus:ring-[#C79A32]/20
                     "
                   />
+
                 </div>
 
-                {/* Phone */}
-                <div className="relative">
+                {/* PHONE */}
+                <div className="relative min-w-0 w-full">
+
                   <Phone
                     size={19}
-                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                    className="
+                      pointer-events-none
+                      absolute
+                      left-4
+                      top-1/2
+                      z-10
+                      -translate-y-1/2
+                      text-[#E2BD62]
+                    "
                   />
 
                   <input
@@ -154,10 +192,20 @@ I would like to reserve a table at TREE HOUSE Restaurant.
                     placeholder="Phone Number"
                     required
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-4
+                      py-3.5
+                      pl-11
+                      text-sm
+                      sm:text-base
                       text-white
                       outline-none
                       placeholder:text-[#AEBBB4]
@@ -167,13 +215,23 @@ I would like to reserve a table at TREE HOUSE Restaurant.
                       focus:ring-[#C79A32]/20
                     "
                   />
+
                 </div>
 
-                {/* Email */}
-                <div className="relative">
+                {/* EMAIL */}
+                <div className="relative min-w-0 w-full">
+
                   <Mail
                     size={19}
-                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                    className="
+                      pointer-events-none
+                      absolute
+                      left-4
+                      top-1/2
+                      z-10
+                      -translate-y-1/2
+                      text-[#E2BD62]
+                    "
                   />
 
                   <input
@@ -182,10 +240,20 @@ I would like to reserve a table at TREE HOUSE Restaurant.
                     placeholder="Email Address"
                     required
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-4
+                      py-3.5
+                      pl-11
+                      text-sm
+                      sm:text-base
                       text-white
                       outline-none
                       placeholder:text-[#AEBBB4]
@@ -195,13 +263,26 @@ I would like to reserve a table at TREE HOUSE Restaurant.
                       focus:ring-[#C79A32]/20
                     "
                   />
+
                 </div>
 
-                {/* Date */}
-                <div className="relative">
+                {/* ================================================= */}
+                {/* DATE — FIXED FOR MOBILE */}
+                {/* ================================================= */}
+
+                <div className="relative min-w-0 w-full overflow-hidden">
+
                   <CalendarDays
                     size={19}
-                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                    className="
+                      pointer-events-none
+                      absolute
+                      left-4
+                      top-1/2
+                      z-10
+                      -translate-y-1/2
+                      text-[#E2BD62]
+                    "
                   />
 
                   <input
@@ -209,10 +290,22 @@ I would like to reserve a table at TREE HOUSE Restaurant.
                     type="date"
                     required
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      appearance-none
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-3
+                      py-3.5
+                      pl-11
+                      pr-2
+                      text-[14px]
+                      sm:text-base
                       text-white
                       outline-none
                       transition
@@ -221,13 +314,26 @@ I would like to reserve a table at TREE HOUSE Restaurant.
                       focus:ring-[#C79A32]/20
                     "
                   />
+
                 </div>
 
-                {/* Time */}
-                <div className="relative">
+                {/* ================================================= */}
+                {/* TIME — FIXED FOR MOBILE */}
+                {/* ================================================= */}
+
+                <div className="relative min-w-0 w-full overflow-hidden">
+
                   <Clock
                     size={19}
-                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                    className="
+                      pointer-events-none
+                      absolute
+                      left-4
+                      top-1/2
+                      z-10
+                      -translate-y-1/2
+                      text-[#E2BD62]
+                    "
                   />
 
                   <input
@@ -235,10 +341,22 @@ I would like to reserve a table at TREE HOUSE Restaurant.
                     type="time"
                     required
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      appearance-none
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-3
+                      py-3.5
+                      pl-11
+                      pr-2
+                      text-[14px]
+                      sm:text-base
                       text-white
                       outline-none
                       transition
@@ -247,13 +365,23 @@ I would like to reserve a table at TREE HOUSE Restaurant.
                       focus:ring-[#C79A32]/20
                     "
                   />
+
                 </div>
 
-                {/* Guests */}
-                <div className="relative">
+                {/* GUESTS */}
+                <div className="relative min-w-0 w-full">
+
                   <Users
                     size={19}
-                    className="absolute left-5 top-1/2 -translate-y-1/2 text-[#E2BD62]"
+                    className="
+                      pointer-events-none
+                      absolute
+                      left-4
+                      top-1/2
+                      z-10
+                      -translate-y-1/2
+                      text-[#E2BD62]
+                    "
                   />
 
                   <input
@@ -263,10 +391,20 @@ I would like to reserve a table at TREE HOUSE Restaurant.
                     placeholder="Number of Guests"
                     required
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-4
+                      py-3.5
+                      pl-11
+                      text-sm
+                      sm:text-base
                       text-white
                       outline-none
                       placeholder:text-[#AEBBB4]
@@ -276,27 +414,46 @@ I would like to reserve a table at TREE HOUSE Restaurant.
                       focus:ring-[#C79A32]/20
                     "
                   />
+
                 </div>
 
-                {/* Special Requests */}
-                <div className="relative md:col-span-2">
+                {/* SPECIAL REQUESTS */}
+                <div className="relative min-w-0 w-full md:col-span-2">
+
                   <MessageSquare
                     size={19}
-                    className="absolute left-5 top-5 text-[#E2BD62]"
+                    className="
+                      pointer-events-none
+                      absolute
+                      left-4
+                      top-4
+                      z-10
+                      text-[#E2BD62]
+                    "
                   />
 
                   <textarea
                     name="message"
-                    rows={5}
+                    rows={4}
                     placeholder="Special Requests..."
                     className="
-                      w-full rounded-xl
-                      border border-white/15
+                      block
+                      w-full
+                      min-w-0
+                      max-w-full
+                      box-border
+                      resize-none
+                      rounded-xl
+                      border
+                      border-white/15
                       bg-[#204437]
-                      px-5 py-4 pl-12
+                      px-4
+                      py-3.5
+                      pl-11
+                      text-sm
+                      sm:text-base
                       text-white
                       outline-none
-                      resize-none
                       placeholder:text-[#AEBBB4]
                       transition
                       focus:border-[#C79A32]
@@ -304,22 +461,26 @@ I would like to reserve a table at TREE HOUSE Restaurant.
                       focus:ring-[#C79A32]/20
                     "
                   />
+
                 </div>
 
-                {/* Button */}
+                {/* BUTTON */}
                 <button
                   type="submit"
                   disabled={loading}
                   className="
                     md:col-span-2
-                    mt-2
+                    mt-1
                     w-full
+                    min-w-0
                     rounded-xl
                     bg-[#C79A32]
-                    py-4
+                    px-4
+                    py-3.5
+                    text-sm
+                    sm:text-base
                     text-[#17352A]
                     font-bold
-                    text-base
                     transition
                     hover:bg-[#E2BD62]
                     hover:shadow-lg
@@ -338,8 +499,8 @@ I would like to reserve a table at TREE HOUSE Restaurant.
             </div>
           </motion.div>
 
-          {/* Bottom Text */}
-          <p className="mt-8 text-center text-sm text-[#66706A]">
+          {/* BOTTOM TEXT */}
+          <p className="mt-5 text-center text-xs sm:text-sm text-[#66706A]">
             We look forward to welcoming you at TREE HOUSE, Jagiroad.
           </p>
 
