@@ -140,7 +140,7 @@ export default function Contact() {
                       hover:text-[#B18424]
                     "
                   >
-                    +91 88769 51989
+                    +91 6026311368
                   </a>
                 </div>
               </div>
@@ -172,7 +172,7 @@ export default function Contact() {
                       hover:text-[#B18424]
                     "
                   >
-                    info@treehouserestaurant.com
+                    info@resorttreehouse4@gmail.com
                   </a>
                 </div>
               </div>
@@ -195,7 +195,7 @@ export default function Contact() {
                   <p className="mt-0.5 text-xs leading-5 text-[#66706A]">
                     Monday – Sunday
                     <br />
-                    10:00 AM – 10:00 PM
+                    7:30 AM – 10:00 PM
                   </p>
                 </div>
               </div>
