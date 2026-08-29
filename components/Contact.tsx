@@ -258,7 +258,7 @@ export default function Contact() {
           >
             <iframe
               title="TREE HOUSE Restaurant Location"
-              src="https://www.google.com/maps?q=Jagiroad,Assam&output=embed"
+              src="https://www.google.com/maps?q=TREE+HOUSE+Restaurant,+Jagiroad,+Assam&output=embed"
               className="
                 h-[260px]
                 w-full
