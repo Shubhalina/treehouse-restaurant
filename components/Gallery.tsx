@@ -21,12 +21,20 @@ const galleryImages = [
     alt: "TREE HOUSE Kids Play Zone",
   },
   {
+    src: "/images/gallery17.jpg",
+    alt: "Wedding at TREE HOUSE",
+  },
+  {
     src: "/images/gallery4.jpg",
     alt: "TREE HOUSE Kids Play Zone",
   },
   {
     src: "/images/gallery10.jpg",
     alt: "TREE HOUSE restaurant",
+  },
+  {
+    src: "/images/gallery18.jpg",
+    alt: "Family Gathering at TREE HOUSE",
   },
   {
     src: "/images/gallery6.jpg",
