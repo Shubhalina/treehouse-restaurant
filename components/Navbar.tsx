@@ -8,13 +8,13 @@ import { Menu, X } from "lucide-react";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-    const navLinks = [
+  const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Service", href: "/#events" },
-    { name: "Menu", href: "/#menu" },
-    { name: "Gallery", href: "/#gallery" },
+    { name: "Service", href: "#events" },
+    { name: "Menu", href: "#menu" },
+    { name: "Gallery", href: "#gallery" },
     { name: "About", href: "/about" },
-    { name: "Contact", href: "/#contact" },
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
@@ -65,23 +65,41 @@ export default function Navbar() {
 
         <nav className="hidden md:flex items-center gap-6 lg:gap-8">
 
-          {navLinks.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="
-                text-[#F5F3EC]
-                text-[18px]
-                font-medium
-                transition-all
-                duration-300
-                hover:text-[#E2BD62]
-                outline-none
-              "
-            >
-              {item.name}
-            </Link>
-          ))}
+          {navLinks.map((item) =>
+            item.name === "Home" || item.name === "About" ? (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="
+                  text-[#F5F3EC]
+                  text-[18px]
+                  font-medium
+                  transition-all
+                  duration-300
+                  hover:text-[#E2BD62]
+                  outline-none
+                "
+              >
+                {item.name}
+              </Link>
+            ) : (
+              <a
+                key={item.name}
+                href={item.href}
+                className="
+                  text-[#F5F3EC]
+                  text-[18px]
+                  font-medium
+                  transition-all
+                  duration-300
+                  hover:text-[#E2BD62]
+                  outline-none
+                "
+              >
+                {item.name}
+              </a>
+            )
+          )}
 
         </nav>
 
@@ -112,26 +130,47 @@ export default function Navbar() {
 
           <nav className="flex flex-col px-6 py-4">
 
-            {navLinks.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="
-                  text-[#F5F3EC]
-                  text-[18px]
-                  font-medium
-                  py-3
-                  border-b
-                  border-white/5
-                  hover:text-[#D7A936]
-                  transition
-                  outline-none
-                "
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navLinks.map((item) =>
+              item.name === "Home" || item.name === "About" ? (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className="
+                    text-[#F5F3EC]
+                    text-[18px]
+                    font-medium
+                    py-3
+                    border-b
+                    border-white/5
+                    hover:text-[#D7A936]
+                    transition
+                    outline-none
+                  "
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className="
+                    text-[#F5F3EC]
+                    text-[18px]
+                    font-medium
+                    py-3
+                    border-b
+                    border-white/5
+                    hover:text-[#D7A936]
+                    transition
+                    outline-none
+                  "
+                >
+                  {item.name}
+                </a>
+              )
+            )}
 
           </nav>
 
