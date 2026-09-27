@@ -36,7 +36,7 @@ export default function Navbar() {
 
           <div className="relative w-[40px] h-[48px] md:w-[44px] md:h-[52px] shrink-0">
             <Image
-              src="/images/tree-house-logo.jpeg"
+              src="/images/tree-house-logo.png"
               alt="TREE HOUSE"
               fill
               priority
