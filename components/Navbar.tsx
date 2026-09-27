@@ -34,13 +34,13 @@ export default function Navbar() {
 
           {/* Tree House Logo */}
 
-          <div className="relative w-[40px] h-[48px] md:w-[44px] md:h-[52px] shrink-0">
+         <div className="relative w-[50px] h-[52px] md:w-[55px] md:h-[58px] shrink-0">
             <Image
               src="/images/tree-house-logo.png"
-              alt="TREE HOUSE"
+              alt="TREE HOUSE Restaurant"
               fill
               priority
-              sizes="44px"
+              sizes="55px"
               className="object-contain"
             />
           </div>
