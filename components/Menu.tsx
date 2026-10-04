@@ -67,6 +67,22 @@ const restaurantMenuImages = [
     src: "/images/tree-house-menu2.jpeg",
     alt: "TREE HOUSE Restaurant Menu - Page 2",
   },
+   {
+    src: "/images/tree-house-menu3.jpeg",
+    alt: "TREE HOUSE Restaurant Menu - Page 1",
+  },
+  {
+    src: "/images/tree-house-menu4.jpeg",
+    alt: "TREE HOUSE Restaurant Menu - Page 2",
+  },
+   {
+    src: "/images/tree-house-menu5.jpeg",
+    alt: "TREE HOUSE Restaurant Menu - Page 1",
+  },
+  {
+    src: "/images/tree-house-menu6.jpeg",
+    alt: "TREE HOUSE Restaurant Menu - Page 2",
+  },
 ];
 
 export default function Menu() {
